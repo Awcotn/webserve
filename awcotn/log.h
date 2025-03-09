@@ -9,6 +9,8 @@
 #include <fstream>
 #include <vector>
 #include <memory>
+#include <map>
+#include "singleton.h"
 
 #define AWCOTN_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -180,6 +182,20 @@ private:
     std::ofstream m_filestream;
     uint64_t m_lastTime = 0;
 };
+
+class LoggerManager {
+public:
+    LoggerManager();
+    Logger::ptr getLogger(const std::string& name);
+
+    void init();
+     
+private:
+    std::map<std::string, Logger::ptr> m_loggers;
+    Logger::ptr m_root;
+};
+
+typedef awcotn::Singleton<LoggerManager> LoggerMgr;
 
 };
 

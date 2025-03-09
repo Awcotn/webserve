@@ -22,5 +22,9 @@ int main(int argc, char** argv) {
 
     AWCOTN_LOG_ERROR(logger) << "test macro error";
 
+    auto l = awcotn::LoggerMgr::GetInstance()->getLogger("xx");
+    AWCOTN_LOG_INFO(l) << "xxx";
+
+
     return 0;
 }

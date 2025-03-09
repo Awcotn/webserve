@@ -47,6 +47,19 @@
         "fstream": "cpp",
         "istream": "cpp",
         "sstream": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "set": "cpp",
+        "iomanip": "cpp",
+        "any": "cpp",
+        "chrono": "cpp",
+        "forward_list": "cpp",
+        "unordered_set": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "cinttypes": "cpp",
+        "valarray": "cpp",
+        "variant": "cpp"
     }
 }

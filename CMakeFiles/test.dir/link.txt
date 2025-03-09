@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated -rdynamic CMakeFiles/test.dir/tests/test.cc.o -o bin/test  -Wl,-rpath,/home/awcotn/workspace/webserve/lib lib/libawcotn.so 

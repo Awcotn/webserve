@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -std=c++11 -rdynamic -g -O3 -Wall  -Werror -Wno-unused-function -Wno-deprecated -shared -Wl,-soname,libawcotn.so -o ../lib/libawcotn.so CMakeFiles/awcotn.dir/awcotn/log.cc.o 

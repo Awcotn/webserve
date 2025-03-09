@@ -1,0 +1,4 @@
+/home/awcotn/workspace/webserve/build/CMakeFiles/awcotn.dir
+/home/awcotn/workspace/webserve/build/CMakeFiles/test.dir
+/home/awcotn/workspace/webserve/build/CMakeFiles/edit_cache.dir
+/home/awcotn/workspace/webserve/build/CMakeFiles/rebuild_cache.dir

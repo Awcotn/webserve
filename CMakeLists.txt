@@ -9,6 +9,7 @@ include_directories(${PROJECT_SOURCE_DIR})
 set(LIB_SRC
     awcotn/log.cc
     awcotn/util.cc
+    awcotn/config.cc
     )
 
 add_library(awcotn SHARED ${LIB_SRC})
@@ -18,6 +19,10 @@ add_library(awcotn SHARED ${LIB_SRC})
 add_executable(test tests/test.cc)
 add_dependencies(test awcotn)
 target_link_libraries(test awcotn)
+
+add_executable(test_config tests/test_config.cc)
+add_dependencies(test_config awcotn)
+target_link_libraries(test_config awcotn)
 
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

@@ -178,5 +178,6 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o: \
  /usr/include/c++/11/bits/stl_multimap.h \
  /usr/include/c++/11/bits/erase_if.h \
  /home/awcotn/workspace/webserve/awcotn/singleton.h \
+ /home/awcotn/workspace/webserve/awcotn/util.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/functional \
  /usr/include/c++/11/bits/std_function.h /usr/include/c++/11/cstdarg

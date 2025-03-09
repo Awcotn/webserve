@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/awcotn.dir/awcotn/config.cc.o"
+  "CMakeFiles/awcotn.dir/awcotn/config.cc.o.d"
   "CMakeFiles/awcotn.dir/awcotn/log.cc.o"
   "CMakeFiles/awcotn.dir/awcotn/log.cc.o.d"
   "CMakeFiles/awcotn.dir/awcotn/util.cc.o"

@@ -11,6 +11,7 @@
 #include <memory>
 #include <map>
 #include "singleton.h"
+#include "util.h"
 
 #define AWCOTN_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -23,6 +24,7 @@
 #define AWCOTN_LOG_ERROR(logger) AWCOTN_LOG_LEVEL(logger, awcotn::LogLevel::ERROR)
 #define AWCOTN_LOG_FATAL(logger) AWCOTN_LOG_LEVEL(logger, awcotn::LogLevel::FATAL)
 
+#define AWCOTN_LOG_ROOT() awcotn::LoggerMgr::GetInstance()->getRoot()
 
 namespace awcotn {
 
@@ -189,7 +191,7 @@ public:
     Logger::ptr getLogger(const std::string& name);
 
     void init();
-     
+    Logger::ptr getRoot() const { return m_root; }
 private:
     std::map<std::string, Logger::ptr> m_loggers;
     Logger::ptr m_root;

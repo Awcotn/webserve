@@ -468,7 +468,6 @@ void LogFormatter::init()
 
 LoggerManager::LoggerManager() {
     m_root.reset(new Logger);
-
     m_root->addAppender(LogAppender::ptr(new StdoutLogAppender));
 }
 Logger::ptr LoggerManager::getLogger(const std::string& name) {

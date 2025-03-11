@@ -818,7 +818,58 @@ CMakeFiles/awcotn.dir/awcotn/config.cc.o: awcotn/config.cc \
   /usr/include/c++/11/bits/stl_multimap.h \
   /usr/include/c++/11/bits/erase_if.h \
   awcotn/singleton.h \
-  awcotn/util.h
+  awcotn/util.h \
+  /usr/local/include/yaml-cpp/yaml.h \
+  /usr/local/include/yaml-cpp/parser.h \
+  /usr/local/include/yaml-cpp/dll.h \
+  /usr/local/include/yaml-cpp/emitter.h \
+  /usr/local/include/yaml-cpp/binary.h \
+  /usr/local/include/yaml-cpp/emitterdef.h \
+  /usr/local/include/yaml-cpp/emittermanip.h \
+  /usr/local/include/yaml-cpp/null.h \
+  /usr/local/include/yaml-cpp/ostream_wrapper.h \
+  /usr/local/include/yaml-cpp/fptostring.h \
+  /usr/local/include/yaml-cpp/emitterstyle.h \
+  /usr/local/include/yaml-cpp/stlemitter.h \
+  /usr/include/c++/11/set \
+  /usr/include/c++/11/bits/stl_set.h \
+  /usr/include/c++/11/bits/stl_multiset.h \
+  /usr/local/include/yaml-cpp/exceptions.h \
+  /usr/local/include/yaml-cpp/mark.h \
+  /usr/local/include/yaml-cpp/noexcept.h \
+  /usr/local/include/yaml-cpp/traits.h \
+  /usr/local/include/yaml-cpp/node/node.h \
+  /usr/local/include/yaml-cpp/node/detail/iterator_fwd.h \
+  /usr/local/include/yaml-cpp/node/ptr.h \
+  /usr/local/include/yaml-cpp/node/type.h \
+  /usr/local/include/yaml-cpp/node/impl.h \
+  /usr/local/include/yaml-cpp/node/detail/memory.h \
+  /usr/local/include/yaml-cpp/node/detail/node.h \
+  /usr/local/include/yaml-cpp/node/detail/node_ref.h \
+  /usr/local/include/yaml-cpp/node/detail/node_data.h \
+  /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
+  /usr/local/include/yaml-cpp/node/iterator.h \
+  /usr/local/include/yaml-cpp/node/detail/iterator.h \
+  /usr/include/c++/11/atomic \
+  /usr/local/include/yaml-cpp/node/convert.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/valarray \
+  /usr/include/c++/11/bits/valarray_array.h \
+  /usr/include/c++/11/bits/valarray_array.tcc \
+  /usr/include/c++/11/bits/valarray_before.h \
+  /usr/include/c++/11/bits/slice_array.h \
+  /usr/include/c++/11/bits/valarray_after.h \
+  /usr/include/c++/11/bits/gslice.h \
+  /usr/include/c++/11/bits/gslice_array.h \
+  /usr/include/c++/11/bits/mask_array.h \
+  /usr/include/c++/11/bits/indirect_array.h \
+  /usr/local/include/yaml-cpp/node/detail/impl.h \
+  /usr/local/include/yaml-cpp/node/parse.h \
+  /usr/local/include/yaml-cpp/node/emit.h
 
 CMakeFiles/awcotn.dir/awcotn/log.cc.o: awcotn/log.cc \
   /usr/include/stdc-predef.h \
@@ -1115,6 +1166,50 @@ CMakeFiles/awcotn.dir/awcotn/util.cc.o: awcotn/util.cc \
 
 awcotn/log.cc:
 
+/usr/local/include/yaml-cpp/node/emit.h:
+
+/usr/include/c++/11/bits/indirect_array.h:
+
+/usr/include/c++/11/bits/mask_array.h:
+
+/usr/include/c++/11/bits/gslice_array.h:
+
+/usr/include/c++/11/bits/valarray_after.h:
+
+/usr/include/c++/11/bits/slice_array.h:
+
+/usr/include/c++/11/bits/valarray_array.h:
+
+/usr/include/c++/11/bits/hashtable_policy.h:
+
+/usr/include/c++/11/unordered_map:
+
+/usr/local/include/yaml-cpp/node/convert.h:
+
+/usr/include/c++/11/atomic:
+
+/usr/local/include/yaml-cpp/node/iterator.h:
+
+/usr/local/include/yaml-cpp/node/ptr.h:
+
+/usr/local/include/yaml-cpp/node/detail/iterator_fwd.h:
+
+/usr/local/include/yaml-cpp/mark.h:
+
+/usr/include/c++/11/bits/stl_set.h:
+
+/usr/local/include/yaml-cpp/stlemitter.h:
+
+/usr/local/include/yaml-cpp/emitterstyle.h:
+
+/usr/local/include/yaml-cpp/fptostring.h:
+
+/usr/local/include/yaml-cpp/ostream_wrapper.h:
+
+/usr/local/include/yaml-cpp/emitterdef.h:
+
+/usr/local/include/yaml-cpp/emitter.h:
+
 awcotn/util.h:
 
 /usr/include/c++/11/bits/erase_if.h:
@@ -1156,6 +1251,8 @@ awcotn/log.h:
 /usr/include/boost/predef/other/endian.h:
 
 /usr/include/c++/11/math.h:
+
+/usr/local/include/yaml-cpp/node/detail/impl.h:
 
 /usr/include/c++/11/stdlib.h:
 
@@ -1339,6 +1436,8 @@ awcotn/log.h:
 
 /usr/include/boost/math/special_functions/detail/round_fwd.hpp:
 
+/usr/include/c++/11/bits/valarray_before.h:
+
 /usr/include/c++/11/bits/stl_bvector.h:
 
 /usr/include/c++/11/bits/stl_vector.h:
@@ -1356,6 +1455,8 @@ awcotn/log.h:
 /usr/include/boost/predef/detail/test.h:
 
 /usr/include/boost/predef/make.h:
+
+/usr/include/c++/11/valarray:
 
 /usr/include/boost/predef/version_number.h:
 
@@ -1388,6 +1489,8 @@ awcotn/singleton.h:
 /usr/include/c++/11/cstring:
 
 /usr/include/boost/move/detail/std_ns_end.hpp:
+
+/usr/local/include/yaml-cpp/node/impl.h:
 
 /usr/include/boost/move/detail/std_ns_begin.hpp:
 
@@ -1465,6 +1568,8 @@ awcotn/singleton.h:
 
 /usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp:
 
+/usr/local/include/yaml-cpp/dll.h:
+
 /usr/include/boost/mpl/aux_/config/forwarding.hpp:
 
 /usr/include/boost/mpl/aux_/numeric_cast_utils.hpp:
@@ -1479,6 +1584,8 @@ awcotn/singleton.h:
 
 /usr/include/boost/mpl/aux_/comparison_op.hpp:
 
+/usr/include/c++/11/bits/valarray_array.tcc:
+
 /usr/include/boost/numeric/conversion/detail/meta.hpp:
 
 /usr/include/boost/mpl/vector.hpp:
@@ -1491,6 +1598,8 @@ awcotn/singleton.h:
 
 /usr/include/boost/type.hpp:
 
+/usr/local/include/yaml-cpp/parser.h:
+
 /usr/include/boost/numeric/conversion/cast.hpp:
 
 /usr/include/boost/mpl/aux_/advance_backward.hpp:
@@ -1502,6 +1611,8 @@ awcotn/singleton.h:
 /usr/include/stdio.h:
 
 /usr/include/boost/mpl/aux_/config/ttp.hpp:
+
+/usr/local/include/yaml-cpp/node/parse.h:
 
 /usr/include/boost/mpl/aux_/config/gcc.hpp:
 
@@ -1551,6 +1662,8 @@ awcotn/singleton.h:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
+/usr/local/include/yaml-cpp/yaml.h:
+
 /usr/include/boost/mpl/limits/arity.hpp:
 
 /usr/include/boost/mpl/aux_/config/eti.hpp:
@@ -1563,6 +1676,8 @@ awcotn/singleton.h:
 
 /usr/include/boost/lexical_cast.hpp:
 
+/usr/local/include/yaml-cpp/node/type.h:
+
 /usr/include/c++/11/bits/istream.tcc:
 
 /usr/include/boost/preprocessor/variadic/elem.hpp:
@@ -1570,6 +1685,8 @@ awcotn/singleton.h:
 /usr/include/x86_64-linux-gnu/asm/unistd.h:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
+
+/usr/local/include/yaml-cpp/emittermanip.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
@@ -1819,6 +1936,8 @@ awcotn/util.cc:
 
 /usr/include/boost/type_traits/has_minus_assign.hpp:
 
+/usr/local/include/yaml-cpp/node/detail/node.h:
+
 /usr/include/c++/11/bits/stl_relops.h:
 
 /usr/include/boost/core/noncopyable.hpp:
@@ -1859,6 +1978,8 @@ awcotn/util.cc:
 
 /usr/include/boost/mpl/placeholders.hpp:
 
+/usr/local/include/yaml-cpp/node/node.h:
+
 /usr/include/boost/mpl/aux_/O1_size_impl.hpp:
 
 /usr/include/boost/mpl/equal_to.hpp:
@@ -1866,6 +1987,8 @@ awcotn/util.cc:
 /usr/include/boost/config/detail/select_stdlib_config.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/local/include/yaml-cpp/binary.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
@@ -1894,6 +2017,8 @@ awcotn/util.cc:
 /usr/include/boost/mpl/list/aux_/push_back.hpp:
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/local/include/yaml-cpp/node/detail/node_iterator.h:
 
 /usr/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp:
 
@@ -1944,6 +2069,8 @@ awcotn/util.cc:
 /usr/include/boost/mpl/contains_fwd.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/local/include/yaml-cpp/node/detail/node_data.h:
 
 /usr/include/boost/type_traits/is_base_of.hpp:
 
@@ -2044,6 +2171,8 @@ awcotn/config.cc:
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+/usr/local/include/yaml-cpp/null.h:
 
 /usr/include/c++/11/ext/type_traits.h:
 
@@ -2163,17 +2292,23 @@ awcotn/config.cc:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
+/usr/local/include/yaml-cpp/noexcept.h:
+
 /usr/include/c++/11/bits/basic_string.h:
 
 /usr/include/boost/mpl/list/aux_/front.hpp:
 
 /usr/include/c++/11/bits/shared_ptr_base.h:
 
+/usr/include/c++/11/set:
+
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/linux/limits.h:
 
 /usr/include/boost/mpl/always.hpp:
+
+/usr/include/c++/11/bits/gslice.h:
 
 /usr/include/boost/preprocessor/repetition/for.hpp:
 
@@ -2209,6 +2344,8 @@ awcotn/config.cc:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
+/usr/local/include/yaml-cpp/traits.h:
+
 /usr/include/boost/mpl/aux_/config/has_xxx.hpp:
 
 /usr/include/c++/11/bits/stl_pair.h:
@@ -2226,6 +2363,8 @@ awcotn/config.cc:
 /usr/include/c++/11/bits/allocator.h:
 
 /usr/include/boost/preprocessor/punctuation/comma_if.hpp:
+
+/usr/include/c++/11/bits/hashtable.h:
 
 /usr/include/boost/core/checked_delete.hpp:
 
@@ -2276,6 +2415,8 @@ awcotn/config.cc:
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
 
 /usr/include/boost/utility/binary.hpp:
+
+/usr/include/c++/11/bits/enable_special_members.h:
 
 /usr/include/boost/mpl/aux_/largest_int.hpp:
 
@@ -2383,6 +2524,8 @@ awcotn/config.cc:
 
 /usr/include/boost/preprocessor/detail/check.hpp:
 
+/usr/local/include/yaml-cpp/exceptions.h:
+
 /usr/include/boost/preprocessor/logical/compl.hpp:
 
 /usr/include/boost/preprocessor/list/reverse.hpp:
@@ -2429,6 +2572,8 @@ awcotn/config.cc:
 
 /usr/include/boost/utility/base_from_member.hpp:
 
+/usr/include/c++/11/bits/stl_multiset.h:
+
 /usr/include/boost/type_traits/is_rvalue_reference.hpp:
 
 /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp:
@@ -2437,7 +2582,11 @@ awcotn/config.cc:
 
 /usr/include/boost/type_traits/detail/yes_no_type.hpp:
 
+/usr/include/c++/11/bits/unordered_map.h:
+
 /usr/include/boost/type_traits/is_arithmetic.hpp:
+
+/usr/local/include/yaml-cpp/node/detail/node_ref.h:
 
 /usr/include/boost/mpl/vector/aux_/item.hpp:
 
@@ -2534,6 +2683,8 @@ awcotn/config.cc:
 /usr/include/boost/mpl/apply_fwd.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_fwd.hpp:
+
+/usr/local/include/yaml-cpp/node/detail/iterator.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
@@ -2728,6 +2879,8 @@ awcotn/config.cc:
 /usr/include/boost/range/empty.hpp:
 
 /usr/include/boost/range/rbegin.hpp:
+
+/usr/local/include/yaml-cpp/node/detail/memory.h:
 
 /usr/include/boost/range/reverse_iterator.hpp:
 

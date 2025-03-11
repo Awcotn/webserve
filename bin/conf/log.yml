@@ -1,0 +1,20 @@
+logs:
+    - name: root
+      level: info
+      appenders:
+          - type: FileLogAppender
+            file: log.txt
+          - type: StdoutLogAppender
+    - name: system
+      level: info
+      appenders:
+          - type: FileLogAppender
+            file: log.txt
+          - type: StdoutLogAppender
+
+system:
+  port: 9900
+  value: 15
+  int_vec: 
+      - 10
+      - 30

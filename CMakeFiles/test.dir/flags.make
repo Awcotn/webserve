@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/awcotn/workspace/webserve
+CXX_INCLUDES = -I/home/awcotn/workspace/webserve -I/apps/awcotn/include
 
 CXX_FLAGS =  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated
 

@@ -1,0 +1,13 @@
+system:
+  port: 9900
+  value: 15
+  int_vec: 
+      - 10
+      - 30
+  int_list: [20, 40]
+
+class:
+  person: 
+    name: awcotn
+    age: 24
+    sex: true

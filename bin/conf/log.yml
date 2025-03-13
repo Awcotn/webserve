@@ -1,27 +1,15 @@
 logs:
     - name: root
       level: info
+      formatter: '%d%T%m%n'
       appenders:
           - type: FileLogAppender
-            file: log.txt
+            file: root.txt
           - type: StdoutLogAppender
     - name: system
-      level: info
+      level: debug
+      formatter: '%d%T%m%n'
       appenders:
           - type: FileLogAppender
-            file: log.txt
+            file: system.txt
           - type: StdoutLogAppender
-
-system:
-  port: 9900
-  value: 15
-  int_vec: 
-      - 10
-      - 30
-  int_list: [20, 40]
-
-class:
-  person: 
-    name: awcotn
-    age: 24
-    sex: true

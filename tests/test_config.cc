@@ -1,7 +1,7 @@
 #include "awcotn/config.h"
 #include "awcotn/log.h"
 #include <yaml-cpp/yaml.h>
-
+#include <iostream>
 
 #if 1
 awcotn::ConfigVar<int>::ptr g_int_value_config = 
@@ -82,7 +82,7 @@ void test_config() {
     XX_M(g_str_int_map_value_config, str_int_map, before);
     XX_M(g_str_int_umap_value_config, str_int_umap, before);
 
-    YAML::Node root = YAML::LoadFile("/home/awcotn/workspace/webserve/bin/conf/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/awcotn/workspace/webserve/bin/conf/test.yml");
     awcotn::Config::LoadFromYaml(root);
 
     AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << "after: " << g_int_value_config->getValue();
@@ -144,16 +144,28 @@ public:
 
 }
 
-awcotn::ConfigVar<Person>::ptr g_person = 
-    awcotn::Config::Lookup("class.person", Person(), "system person");
+// awcotn::ConfigVar<Person>::ptr g_person = 
+//     awcotn::Config::Lookup("class.person", Person(), "system person");
 
 void test_class() {
-    AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << "before: " << g_person->getValue().toString() << " - " <<g_person->toString();
+   // AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << "before: " << g_person->getValue().toString() << " - " <<g_person->toString();
     
-    YAML::Node root = YAML::LoadFile("/home/awcotn/workspace/webserve/bin/conf/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/awcotn/workspace/webserve/bin/conf/test.yml");
     awcotn::Config::LoadFromYaml(root);
 
-    AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << "after: " << g_person->getValue().toString() << " - " <<g_person->toString();
+    //AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << "after: " << g_person->getValue().toString() << " - " <<g_person->toString();
+}
+
+void test_log() {
+    static awcotn::Logger::ptr system_log = AWCOTN_LOG_NAME("system");
+    std::cout << awcotn::LoggerMgr::GetInstance()->toYamlString() << std::endl;
+    YAML::Node root = YAML::LoadFile("/home/awcotn/workspace/webserve/bin/conf/log.yml");
+    awcotn::Config::LoadFromYaml(root);
+    std::cout << "==================" << std::endl;
+    std::cout << awcotn::LoggerMgr::GetInstance()->toYamlString() << std::endl;
+    std::cout << "==================" << std::endl;
+    std::cout << root << std::endl;
+    AWCOTN_LOG_INFO(system_log) << "hello system" << std::endl;
 }
 
 int main(int argc, char** argv) {
@@ -161,6 +173,7 @@ int main(int argc, char** argv) {
     // AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << g_float_value_config->toString();
     //test_yaml();
     //test_config();
-    test_class();
+    //test_class();
+    test_log();
     return 0;
 }

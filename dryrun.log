@@ -1,0 +1,54 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -S/home/awcotn/workspace/webserve -B/home/awcotn/workspace/webserve --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /home/awcotn/workspace/webserve/CMakeFiles /home/awcotn/workspace/webserve//CMakeFiles/progress.marks
+make  -f CMakeFiles/Makefile2 all
+ 
+make[1]: Entering directory '/home/awcotn/workspace/webserve'
+make  -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/depend
+ 
+make[2]: Entering directory '/home/awcotn/workspace/webserve'
+cd /home/awcotn/workspace/webserve && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve/CMakeFiles/awcotn.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/home/awcotn/workspace/webserve'
+make  -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/build
+ 
+make[2]: Entering directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=1 "Building CXX object CMakeFiles/awcotn.dir/awcotn/log.cc.o"
+/usr/bin/c++ -Dawcotn_EXPORTS -I/home/awcotn/workspace/webserve -I/apps/awcotn/include -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated -fPIC -MD -MT CMakeFiles/awcotn.dir/awcotn/log.cc.o -MF CMakeFiles/awcotn.dir/awcotn/log.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/log.cc.o -c /home/awcotn/workspace/webserve/awcotn/log.cc
+/usr/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=2 "Building CXX object CMakeFiles/awcotn.dir/awcotn/util.cc.o"
+/usr/bin/c++ -Dawcotn_EXPORTS -I/home/awcotn/workspace/webserve -I/apps/awcotn/include -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated -fPIC -MD -MT CMakeFiles/awcotn.dir/awcotn/util.cc.o -MF CMakeFiles/awcotn.dir/awcotn/util.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/util.cc.o -c /home/awcotn/workspace/webserve/awcotn/util.cc
+ 
+/usr/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=3 "Building CXX object CMakeFiles/awcotn.dir/awcotn/config.cc.o"
+/usr/bin/c++ -Dawcotn_EXPORTS -I/home/awcotn/workspace/webserve -I/apps/awcotn/include -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated -fPIC -MD -MT CMakeFiles/awcotn.dir/awcotn/config.cc.o -MF CMakeFiles/awcotn.dir/awcotn/config.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/config.cc.o -c /home/awcotn/workspace/webserve/awcotn/config.cc
+/usr/bin/cmake -E cmake_echo_color --switch= --green --bold --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=4 "Linking CXX shared library lib/libawcotn.so"
+/usr/bin/cmake -E cmake_link_script CMakeFiles/awcotn.dir/link.txt --verbose=1
+make[2]: Leaving directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -E cmake_echo_color --switch= --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=1,2,3,4 "Built target awcotn"
+make  -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/depend
+make[2]: Entering directory '/home/awcotn/workspace/webserve'
+cd /home/awcotn/workspace/webserve && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve/CMakeFiles/test.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/home/awcotn/workspace/webserve'
+make  -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
+make[2]: Entering directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=5 "Building CXX object CMakeFiles/test.dir/tests/test.cc.o"
+/usr/bin/c++  -I/home/awcotn/workspace/webserve -I/apps/awcotn/include -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated -MD -MT CMakeFiles/test.dir/tests/test.cc.o -MF CMakeFiles/test.dir/tests/test.cc.o.d -o CMakeFiles/test.dir/tests/test.cc.o -c /home/awcotn/workspace/webserve/tests/test.cc
+/usr/bin/cmake -E cmake_echo_color --switch= --green --bold --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=6 "Linking CXX executable bin/test"
+/usr/bin/cmake -E cmake_link_script CMakeFiles/test.dir/link.txt --verbose=1
+make[2]: Leaving directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -E cmake_echo_color --switch= --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=5,6 "Built target test"
+make  -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/depend
+make[2]: Entering directory '/home/awcotn/workspace/webserve'
+cd /home/awcotn/workspace/webserve && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve /home/awcotn/workspace/webserve/CMakeFiles/test_config.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/home/awcotn/workspace/webserve'
+make  -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
+make[2]: Entering directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=7 "Building CXX object CMakeFiles/test_config.dir/tests/test_config.cc.o"
+/usr/bin/c++  -I/home/awcotn/workspace/webserve -I/apps/awcotn/include -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated -MD -MT CMakeFiles/test_config.dir/tests/test_config.cc.o -MF CMakeFiles/test_config.dir/tests/test_config.cc.o.d -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/awcotn/workspace/webserve/tests/test_config.cc
+/usr/bin/cmake -E cmake_echo_color --switch= --green --bold --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=8 "Linking CXX executable bin/test_config"
+/usr/bin/cmake -E cmake_link_script CMakeFiles/test_config.dir/link.txt --verbose=1
+make[2]: Leaving directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -E cmake_echo_color --switch= --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=7,8 "Built target test_config"
+make[1]: Leaving directory '/home/awcotn/workspace/webserve'
+/usr/bin/cmake -E cmake_progress_start /home/awcotn/workspace/webserve/CMakeFiles 0
+make: Leaving directory '/home/awcotn/workspace/webserve'
+ 

@@ -6,5 +6,11 @@ CXX_DEFINES = -Dawcotn_EXPORTS
 
 CXX_INCLUDES = -I/home/awcotn/workspace/webserve -I/apps/awcotn/include
 
-CXX_FLAGS =  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-deprecated -fPIC
+CXX_FLAGS =  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-builtin-macro-redefined -fPIC
+
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/log.cc.o_DEFINES = __FILE__="awcotn/log.cc"
+
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/util.cc.o_DEFINES = __FILE__="awcotn/util.cc"
+
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/config.cc.o_DEFINES = __FILE__="awcotn/config.cc"
 

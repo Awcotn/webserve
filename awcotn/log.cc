@@ -236,7 +236,24 @@ Logger::Logger(const std::string &name)
 }
 
 void Logger::setFormatter(LogFormatter::ptr val) {
-    LogFormatter::ptr new_val(new LogFormatter(*val));
+    m_formatter = val;
+
+    for (auto& i : m_appenders)
+    {
+        if (!i->m_hasFormatter)
+        {
+            i->m_formatter = m_formatter;
+        }
+    }
+}
+
+LogFormatter::ptr Logger::getFormatter() 
+{ 
+    return m_formatter; 
+}
+
+void Logger::setFormatter(const std::string& val) {
+    LogFormatter::ptr new_val(new LogFormatter(val));
     if (new_val->isError())
     {
         std::cout << "Logger setFormatter name=" << m_name
@@ -244,13 +261,7 @@ void Logger::setFormatter(LogFormatter::ptr val) {
                   << std::endl;
         return;
     }
-    m_formatter = val;
-}
-
-LogFormatter::ptr Logger::getFormatter() { return m_formatter; }
-
-void Logger::setFormatter(const std::string& val) {
-    m_formatter.reset(new awcotn::LogFormatter(val));
+    setFormatter(new_val);
 }
 
 
@@ -258,7 +269,7 @@ void Logger::addAppender(LogAppender::ptr appender)
 {
     if (!appender->getFormatter())
     {
-        appender->setFormatter(m_formatter);
+        appender->m_formatter=(m_formatter);
     }
     m_appenders.push_back(appender);
 }
@@ -311,8 +322,11 @@ std::string LoggerManager::toYamlString() {
 std::string StdoutLogAppender::toYamlString() {
     YAML::Node node;
     node["type"] = "StdoutLogAppender";
-    node["level"] = LogLevel::ToString(m_level);
-    if(m_formatter) {
+    std::cout<< "==========" << m_level << std::endl;
+    if(m_level != LogLevel::UNKNOW) {
+        node["level"] = LogLevel::ToString(m_level);
+    }
+    if(m_formatter && m_hasFormatter) {
         node["formatter"] = m_formatter->getPattern();
     }
     std::stringstream ss;
@@ -324,8 +338,10 @@ std::string FileLogAppender::toYamlString() {
     YAML::Node node;
     node["type"] = "FileLogAppender";
     node["file"] = m_filename;
-    node["level"] = LogLevel::ToString(m_level);
-    if(m_formatter) {
+    if(m_level != LogLevel::UNKNOW) {
+        node["level"] = LogLevel::ToString(m_level);
+    }
+    if(m_formatter && m_hasFormatter) {
         node["formatter"] = m_formatter->getPattern();
     }
     std::stringstream ss;
@@ -382,18 +398,16 @@ FileLogAppender::FileLogAppender(const std::string &filename)
     reopen();
 }
 
-void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, const LogEvent::ptr event)
-{
+void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, const LogEvent::ptr event){
     //std::cout<<"222222222222"<<std::endl;
     if (level >= m_level)
     {
         //std::cout<<11111111111111;
-        m_formatter->format(m_filestream,logger, m_level, event);
+        m_formatter->format(m_filestream,logger, level, event);
     }
 }
 
-bool FileLogAppender::reopen()
-{
+bool FileLogAppender::reopen(){
     if (m_filestream)
     {
         m_filestream.close();
@@ -402,8 +416,7 @@ bool FileLogAppender::reopen()
     return m_filestream.is_open();
 }
 
-void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, const LogEvent::ptr event)
-{
+void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, const LogEvent::ptr event){
     if (level >= m_level)
     {
         std::cout << m_formatter->format(logger, level, event);
@@ -411,7 +424,14 @@ void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level leve
     }
 }
 
-
+void LogAppender::setFormatter(LogFormatter::ptr val) { 
+    m_formatter = val;
+    if(m_formatter) {
+        m_hasFormatter = true;
+    } else {
+        m_hasFormatter = false;
+    }
+}
 
 LogFormatter::LogFormatter(const std::string &pattern)
     : m_pattern(pattern) {
@@ -759,6 +779,15 @@ struct LogIniter {
                         ap.reset(new StdoutLogAppender);
                     }
                     ap->setLevel(a.level);
+                    if(!a.formatter.empty()) {
+                        LogFormatter::ptr fmt(new LogFormatter(a.formatter));
+                        if(!fmt->isError()) {
+                            ap->setFormatter(fmt);
+                        } else {
+                            std::cout << "log.name=" << i.name << " appender type=" << a.type
+                                      << " formatter=" << a.formatter << " is invalid" << std::endl;
+                        }
+                    }
                     logger->addAppender(ap);
                 }
                 for( auto& i : old_value) {

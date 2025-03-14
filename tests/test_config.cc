@@ -158,6 +158,7 @@ void test_class() {
 
 void test_log() {
     static awcotn::Logger::ptr system_log = AWCOTN_LOG_NAME("system");
+    AWCOTN_LOG_INFO(system_log) << "hello system" << std::endl;
     std::cout << awcotn::LoggerMgr::GetInstance()->toYamlString() << std::endl;
     YAML::Node root = YAML::LoadFile("/home/awcotn/workspace/webserve/bin/conf/log.yml");
     awcotn::Config::LoadFromYaml(root);
@@ -165,6 +166,9 @@ void test_log() {
     std::cout << awcotn::LoggerMgr::GetInstance()->toYamlString() << std::endl;
     std::cout << "==================" << std::endl;
     std::cout << root << std::endl;
+    AWCOTN_LOG_INFO(system_log) << "hello system" << std::endl;
+
+    system_log->setFormatter("%d - %m%n");
     AWCOTN_LOG_INFO(system_log) << "hello system" << std::endl;
 }
 

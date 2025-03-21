@@ -1934,6 +1934,8 @@ CMakeFiles/awcotn.dir/awcotn/thread.cc.o: awcotn/thread.cc \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   awcotn/log.h \
   /usr/include/c++/11/list \
   /usr/include/c++/11/bits/stl_list.h \
@@ -2046,6 +2048,8 @@ CMakeFiles/awcotn.dir/awcotn/util.cc.o: awcotn/util.cc \
 /usr/include/x86_64-linux-gnu/asm/unistd_64.h:
 
 /usr/include/x86_64-linux-gnu/sys/syscall.h:
+
+/usr/include/semaphore.h:
 
 /usr/include/c++/11/bits/parse_numbers.h:
 
@@ -3188,6 +3192,8 @@ awcotn/config.cc:
 /usr/include/c++/11/bits/allocated_ptr.h:
 
 /usr/include/c++/11/bits/refwrap.h:
+
+/usr/include/x86_64-linux-gnu/bits/semaphore.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 

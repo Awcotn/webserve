@@ -31,6 +31,8 @@ set(LIB_LIB
     ${YAMLCPP}
     )
 
+message("***",${LIB_LIB})
+    
 add_executable(test tests/test.cc)
 add_dependencies(test awcotn)
 force_redefine_file_macro_for_sources(test) #__FILE__
@@ -39,7 +41,12 @@ target_link_libraries(test ${LIB_LIB})
 add_executable(test_config tests/test_config.cc)
 add_dependencies(test_config awcotn)
 force_redefine_file_macro_for_sources(test_config) #__FILE__
-target_link_libraries(test_config awcotn ${LIB_LIB})
+target_link_libraries(test_config ${LIB_LIB})
+
+add_executable(test_thread tests/test_thread.cc)
+add_dependencies(test_thread awcotn)
+force_redefine_file_macro_for_sources(test_thread) #__FILE__
+target_link_libraries(test_thread ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

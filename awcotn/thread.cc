@@ -25,7 +25,9 @@ void Thread::SetName(const std::string& name) {
     t_thread_name = name;
 }
 
-Thread::Thread(std::function<void()> cb, const std::string& name) {
+Thread::Thread(std::function<void()> cb, const std::string& name) 
+    :m_cb(cb)
+    ,m_name(name) {
     if(name.empty()) {
         m_name = "UNKNOW";
     }

@@ -17,6 +17,7 @@ set(LIB_SRC
     awcotn/log.cc
     awcotn/util.cc
     awcotn/config.cc
+    awcotn/thread.cc
     )
 
 add_library(awcotn SHARED ${LIB_SRC})
@@ -24,15 +25,21 @@ force_redefine_file_macro_for_sources(awcotn) #__FILE__
 #add_library(awcotn_static STATIC ${LIB_SRC})
 #SET_TARGET_PROPERTIES(awcotn_static PROPERTIES OUTPUT_NAME "awcotn")
 
+set(LIB_LIB
+    awcotn
+    pthread
+    ${YAMLCPP}
+    )
+
 add_executable(test tests/test.cc)
-force_redefine_file_macro_for_sources(test) #__FILE__
 add_dependencies(test awcotn)
-target_link_libraries(test awcotn ${YAMLCPP})
+force_redefine_file_macro_for_sources(test) #__FILE__
+target_link_libraries(test ${LIB_LIB})
 
 add_executable(test_config tests/test_config.cc)
-force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_config awcotn)
-target_link_libraries(test_config awcotn yaml-cpp)
+force_redefine_file_macro_for_sources(test_config) #__FILE__
+target_link_libraries(test_config awcotn ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

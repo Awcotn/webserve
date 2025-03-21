@@ -206,6 +206,30 @@ awcotn/log.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/log.cc.s
 .PHONY : awcotn/log.cc.s
 
+awcotn/thread.o: awcotn/thread.cc.o
+.PHONY : awcotn/thread.o
+
+# target to build an object file
+awcotn/thread.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/thread.cc.o
+.PHONY : awcotn/thread.cc.o
+
+awcotn/thread.i: awcotn/thread.cc.i
+.PHONY : awcotn/thread.i
+
+# target to preprocess a source file
+awcotn/thread.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/thread.cc.i
+.PHONY : awcotn/thread.cc.i
+
+awcotn/thread.s: awcotn/thread.cc.s
+.PHONY : awcotn/thread.s
+
+# target to generate assembly for a file
+awcotn/thread.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/thread.cc.s
+.PHONY : awcotn/thread.cc.s
+
 awcotn/util.o: awcotn/util.cc.o
 .PHONY : awcotn/util.o
 
@@ -295,6 +319,9 @@ help:
 	@echo "... awcotn/log.o"
 	@echo "... awcotn/log.i"
 	@echo "... awcotn/log.s"
+	@echo "... awcotn/thread.o"
+	@echo "... awcotn/thread.i"
+	@echo "... awcotn/thread.s"
 	@echo "... awcotn/util.o"
 	@echo "... awcotn/util.i"
 	@echo "... awcotn/util.s"

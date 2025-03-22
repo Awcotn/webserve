@@ -12,6 +12,7 @@
 #include <map>
 #include "singleton.h"
 #include "util.h"
+#include "thread.h"
 
 #define AWCOTN_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -130,12 +131,13 @@ class LogAppender {
 friend class Logger;
 public:
     typedef std::shared_ptr<LogAppender> ptr;
+    typedef Spinlock MutexType;
     virtual ~LogAppender() {};
 
     virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, const LogEvent::ptr event) = 0;
     virtual std::string toYamlString() = 0;
     void setFormatter(LogFormatter::ptr val);
-    LogFormatter::ptr getFormatter () const { return  m_formatter;}
+    LogFormatter::ptr getFormatter () ;
 
     LogLevel::Level getLevel() const { return m_level; }
     void setLevel(LogLevel::Level val) { m_level = val; }
@@ -143,6 +145,7 @@ public:
 protected:
     LogLevel::Level m_level = LogLevel::DEBUG;
     bool m_hasFormatter = false;
+    Mutex m_mutex;
     LogFormatter::ptr m_formatter;
 };
 
@@ -151,6 +154,7 @@ class Logger : public std::enable_shared_from_this<Logger> {
 friend class LoggerManager;
 public:
     typedef std::shared_ptr<Logger> ptr;
+    typedef Spinlock MutexType;
 
     Logger(const std::string& name = "root");   
     void log(LogLevel::Level level, const LogEvent::ptr event);
@@ -177,6 +181,7 @@ public:
 private:
     std::string m_name;                     //日志名称
     LogLevel::Level m_level;                //日志级别
+    Mutex m_mutex;
     std::list<LogAppender::ptr> m_appenders;//Appender集合
     LogFormatter::ptr m_formatter;
     Logger::ptr m_root;
@@ -210,6 +215,7 @@ private:
 
 class LoggerManager {
 public:
+    typedef Spinlock MutexType;
     LoggerManager();
     Logger::ptr getLogger(const std::string& name);
 
@@ -218,6 +224,7 @@ public:
 
     std::string toYamlString();
 private:
+    Mutex m_mutex;
     std::map<std::string, Logger::ptr> m_loggers;
     Logger::ptr m_root;
 };

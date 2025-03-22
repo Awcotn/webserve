@@ -179,8 +179,14 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o: \
  /usr/include/c++/11/bits/erase_if.h \
  /home/awcotn/workspace/webserve/awcotn/singleton.h \
  /home/awcotn/workspace/webserve/awcotn/util.h \
- /usr/include/c++/11/iostream /usr/include/c++/11/functional \
- /usr/include/c++/11/bits/std_function.h /usr/include/c++/11/cstdarg \
+ /home/awcotn/workspace/webserve/awcotn/thread.h \
+ /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \
+ /usr/include/c++/11/ratio /usr/include/c++/11/limits \
+ /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
+ /usr/include/semaphore.h /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+ /usr/include/c++/11/iostream /usr/include/c++/11/cstdarg \
  /home/awcotn/workspace/webserve/awcotn/config.h \
  /usr/include/boost/lexical_cast.hpp /usr/include/boost/config.hpp \
  /usr/include/boost/config/user.hpp \
@@ -431,8 +437,8 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o: \
  /usr/include/boost/preprocessor/seq/enum.hpp \
  /usr/include/boost/concept/detail/concept_undef.hpp \
  /usr/include/boost/iterator/iterator_concepts.hpp \
- /usr/include/boost/limits.hpp /usr/include/c++/11/limits \
- /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
+ /usr/include/boost/limits.hpp /usr/include/c++/11/algorithm \
+ /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
@@ -559,7 +565,7 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o: \
  /usr/include/boost/move/detail/std_ns_end.hpp \
  /usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp \
  /usr/include/c++/11/cstring /usr/include/c++/11/locale \
- /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
  /usr/include/libintl.h /usr/include/c++/11/bits/locale_facets_nonio.tcc \

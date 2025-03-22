@@ -236,15 +236,22 @@ Logger::Logger(const std::string &name)
 }
 
 void Logger::setFormatter(LogFormatter::ptr val) {
+    Mutex::Lock lock(m_mutex);
     m_formatter = val;
 
     for (auto& i : m_appenders)
     {
+        Mutex::Lock ll(i->m_mutex);
         if (!i->m_hasFormatter)
         {
             i->m_formatter = m_formatter;
         }
     }
+}
+
+LogFormatter::ptr LogAppender::getFormatter () { 
+    Mutex::Lock lock(m_mutex);
+    return  m_formatter;
 }
 
 LogFormatter::ptr Logger::getFormatter() 
@@ -267,6 +274,7 @@ void Logger::setFormatter(const std::string& val) {
 
 void Logger::addAppender(LogAppender::ptr appender)
 {
+    Mutex::Lock lock(m_mutex);
     if (!appender->getFormatter())
     {
         appender->m_formatter=(m_formatter);
@@ -276,9 +284,11 @@ void Logger::addAppender(LogAppender::ptr appender)
 
 void Logger::delAppender(LogAppender::ptr appender)
 {
+    Mutex::Lock lock(m_mutex);
     for (auto it = m_appenders.begin();
             it != m_appenders.end(); ++it)
     {
+        Mutex::Lock ll((*it)->m_mutex);
         if (*it == appender)
         {
             m_appenders.erase(it);
@@ -289,10 +299,12 @@ void Logger::delAppender(LogAppender::ptr appender)
 
 void Logger::clearAppenders()
 {
+    Mutex::Lock lock(m_mutex);
     m_appenders.clear();
 }
 
 std::string Logger::toYamlString() {
+    Mutex::Lock lock(m_mutex);
     YAML::Node node;
     node["name"] = m_name;
     node["level"] = LogLevel::ToString(m_level);
@@ -309,6 +321,7 @@ std::string Logger::toYamlString() {
 }
 
 std::string LoggerManager::toYamlString() {
+    Mutex::Lock lock(m_mutex);
     YAML::Node node;
     
     for(auto i: m_loggers) {
@@ -320,6 +333,7 @@ std::string LoggerManager::toYamlString() {
 }
 
 std::string StdoutLogAppender::toYamlString() {
+    Mutex::Lock lock(m_mutex);
     YAML::Node node;
     node["type"] = "StdoutLogAppender";
     std::cout<< "==========" << m_level << std::endl;
@@ -335,6 +349,7 @@ std::string StdoutLogAppender::toYamlString() {
 }
 
 std::string FileLogAppender::toYamlString() {
+    Mutex::Lock lock(m_mutex);
     YAML::Node node;
     node["type"] = "FileLogAppender";
     node["file"] = m_filename;
@@ -355,6 +370,7 @@ void Logger::log(LogLevel::Level level, const LogEvent::ptr event)
     if (level >= m_level)
     {
         auto self = shared_from_this();
+        Mutex::Lock lock(m_mutex);
         if(!m_appenders.empty()) {
             for (auto &i : m_appenders)
             {
@@ -599,6 +615,7 @@ LoggerManager::LoggerManager() {
     init();     
 }
 Logger::ptr LoggerManager::getLogger(const std::string& name) {
+    Mutex::Lock lock(m_mutex);
     auto it = m_loggers.find(name);
 
     if(it == m_loggers.end()) {

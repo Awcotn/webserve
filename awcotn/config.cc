@@ -10,6 +10,7 @@ namespace awcotn
 // @return 返回配置项的基类指针，如果未找到则返回nullptr
 ConfigVarBase::ptr Config::LookupBase(const std::string &name)
 {
+    RWMutexType::ReadLock lock(GetMutex());
     auto it = GetDatas().find(name);
     return it == GetDatas().end() ? nullptr : it->second;
 }
@@ -44,6 +45,16 @@ static void ListAllMember(const std::string &prefix,
         }
     }
 }
+
+void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb)
+{
+    RWMutexType::ReadLock lock(GetMutex());
+    ConfigVarMap &datas = GetDatas();
+    for (auto it = datas.begin(); it != datas.end(); ++it)
+    {
+        cb(it->second);
+    }
+}  
 
 // 从YAML配置文件中加载配置
 // @param root YAML根节点

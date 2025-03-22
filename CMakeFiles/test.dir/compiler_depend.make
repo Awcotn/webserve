@@ -223,8 +223,29 @@ CMakeFiles/test.dir/tests/test.cc.o: tests/test.cc \
   /usr/include/c++/11/bits/erase_if.h \
   awcotn/singleton.h \
   awcotn/util.h \
+  awcotn/thread.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   awcotn/util.h
 
+
+/usr/include/c++/11/limits:
+
+/usr/include/c++/11/ratio:
+
+/usr/include/c++/11/bits/std_thread.h:
+
+awcotn/thread.h:
 
 awcotn/util.h:
 
@@ -247,6 +268,8 @@ awcotn/singleton.h:
 /usr/include/c++/11/sstream:
 
 /usr/include/c++/11/bits/stl_list.h:
+
+/usr/include/c++/11/bits/parse_numbers.h:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
@@ -326,7 +349,11 @@ awcotn/singleton.h:
 
 /usr/include/c++/11/cerrno:
 
+/usr/include/c++/11/thread:
+
 /usr/include/stdio.h:
+
+/usr/include/c++/11/chrono:
 
 /usr/include/c++/11/cstdio:
 
@@ -385,6 +412,8 @@ awcotn/singleton.h:
 /usr/include/c++/11/typeinfo:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/semaphore.h:
 
 /usr/include/c++/11/bits/exception_defines.h:
 
@@ -452,9 +481,13 @@ awcotn/singleton.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
+/usr/include/c++/11/functional:
+
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/11/bits/char_traits.h:
+
+/usr/include/c++/11/bits/std_function.h:
 
 /usr/include/c++/11/bits/allocator.h:
 
@@ -490,6 +523,8 @@ awcotn/log.h:
 
 /usr/include/c++/11/iosfwd:
 
+/usr/include/c++/11/ctime:
+
 /usr/include/c++/11/bits/codecvt.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
@@ -519,6 +554,8 @@ awcotn/log.h:
 /usr/include/c++/11/bits/exception_ptr.h:
 
 /usr/include/c++/11/ext/string_conversions.h:
+
+/usr/include/x86_64-linux-gnu/bits/semaphore.h:
 
 /usr/include/c++/11/exception:
 
@@ -667,5 +704,7 @@ tests/test.cc:
 /usr/include/c++/11/ext/alloc_traits.h:
 
 /usr/include/c++/11/bits/alloc_traits.h:
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
 
 /usr/include/c++/11/bits/stl_construct.h:

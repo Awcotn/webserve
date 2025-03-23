@@ -72,38 +72,10 @@ include CMakeFiles/awcotn.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/awcotn.dir/flags.make
 
-CMakeFiles/awcotn.dir/awcotn/log.cc.o: CMakeFiles/awcotn.dir/flags.make
-CMakeFiles/awcotn.dir/awcotn/log.cc.o: awcotn/log.cc
-CMakeFiles/awcotn.dir/awcotn/log.cc.o: CMakeFiles/awcotn.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/awcotn.dir/awcotn/log.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/awcotn.dir/awcotn/log.cc.o -MF CMakeFiles/awcotn.dir/awcotn/log.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/log.cc.o -c /home/awcotn/workspace/webserve/awcotn/log.cc
-
-CMakeFiles/awcotn.dir/awcotn/log.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/awcotn.dir/awcotn/log.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/awcotn/workspace/webserve/awcotn/log.cc > CMakeFiles/awcotn.dir/awcotn/log.cc.i
-
-CMakeFiles/awcotn.dir/awcotn/log.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/awcotn.dir/awcotn/log.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/awcotn/workspace/webserve/awcotn/log.cc -o CMakeFiles/awcotn.dir/awcotn/log.cc.s
-
-CMakeFiles/awcotn.dir/awcotn/util.cc.o: CMakeFiles/awcotn.dir/flags.make
-CMakeFiles/awcotn.dir/awcotn/util.cc.o: awcotn/util.cc
-CMakeFiles/awcotn.dir/awcotn/util.cc.o: CMakeFiles/awcotn.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/awcotn.dir/awcotn/util.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/awcotn.dir/awcotn/util.cc.o -MF CMakeFiles/awcotn.dir/awcotn/util.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/util.cc.o -c /home/awcotn/workspace/webserve/awcotn/util.cc
-
-CMakeFiles/awcotn.dir/awcotn/util.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/awcotn.dir/awcotn/util.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/awcotn/workspace/webserve/awcotn/util.cc > CMakeFiles/awcotn.dir/awcotn/util.cc.i
-
-CMakeFiles/awcotn.dir/awcotn/util.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/awcotn.dir/awcotn/util.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/awcotn/workspace/webserve/awcotn/util.cc -o CMakeFiles/awcotn.dir/awcotn/util.cc.s
-
 CMakeFiles/awcotn.dir/awcotn/config.cc.o: CMakeFiles/awcotn.dir/flags.make
 CMakeFiles/awcotn.dir/awcotn/config.cc.o: awcotn/config.cc
 CMakeFiles/awcotn.dir/awcotn/config.cc.o: CMakeFiles/awcotn.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/awcotn.dir/awcotn/config.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/awcotn.dir/awcotn/config.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/config.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/awcotn.dir/awcotn/config.cc.o -MF CMakeFiles/awcotn.dir/awcotn/config.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/config.cc.o -c /home/awcotn/workspace/webserve/awcotn/config.cc
 
 CMakeFiles/awcotn.dir/awcotn/config.cc.i: cmake_force
@@ -113,6 +85,34 @@ CMakeFiles/awcotn.dir/awcotn/config.cc.i: cmake_force
 CMakeFiles/awcotn.dir/awcotn/config.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/awcotn.dir/awcotn/config.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/config.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/awcotn/workspace/webserve/awcotn/config.cc -o CMakeFiles/awcotn.dir/awcotn/config.cc.s
+
+CMakeFiles/awcotn.dir/awcotn/fiber.cc.o: CMakeFiles/awcotn.dir/flags.make
+CMakeFiles/awcotn.dir/awcotn/fiber.cc.o: awcotn/fiber.cc
+CMakeFiles/awcotn.dir/awcotn/fiber.cc.o: CMakeFiles/awcotn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/awcotn.dir/awcotn/fiber.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/awcotn.dir/awcotn/fiber.cc.o -MF CMakeFiles/awcotn.dir/awcotn/fiber.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/fiber.cc.o -c /home/awcotn/workspace/webserve/awcotn/fiber.cc
+
+CMakeFiles/awcotn.dir/awcotn/fiber.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/awcotn.dir/awcotn/fiber.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/awcotn/workspace/webserve/awcotn/fiber.cc > CMakeFiles/awcotn.dir/awcotn/fiber.cc.i
+
+CMakeFiles/awcotn.dir/awcotn/fiber.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/awcotn.dir/awcotn/fiber.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/awcotn/workspace/webserve/awcotn/fiber.cc -o CMakeFiles/awcotn.dir/awcotn/fiber.cc.s
+
+CMakeFiles/awcotn.dir/awcotn/log.cc.o: CMakeFiles/awcotn.dir/flags.make
+CMakeFiles/awcotn.dir/awcotn/log.cc.o: awcotn/log.cc
+CMakeFiles/awcotn.dir/awcotn/log.cc.o: CMakeFiles/awcotn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/awcotn.dir/awcotn/log.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/awcotn.dir/awcotn/log.cc.o -MF CMakeFiles/awcotn.dir/awcotn/log.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/log.cc.o -c /home/awcotn/workspace/webserve/awcotn/log.cc
+
+CMakeFiles/awcotn.dir/awcotn/log.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/awcotn.dir/awcotn/log.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/awcotn/workspace/webserve/awcotn/log.cc > CMakeFiles/awcotn.dir/awcotn/log.cc.i
+
+CMakeFiles/awcotn.dir/awcotn/log.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/awcotn.dir/awcotn/log.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/awcotn/workspace/webserve/awcotn/log.cc -o CMakeFiles/awcotn.dir/awcotn/log.cc.s
 
 CMakeFiles/awcotn.dir/awcotn/thread.cc.o: CMakeFiles/awcotn.dir/flags.make
 CMakeFiles/awcotn.dir/awcotn/thread.cc.o: awcotn/thread.cc
@@ -128,23 +128,39 @@ CMakeFiles/awcotn.dir/awcotn/thread.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/awcotn.dir/awcotn/thread.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/thread.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/awcotn/workspace/webserve/awcotn/thread.cc -o CMakeFiles/awcotn.dir/awcotn/thread.cc.s
 
+CMakeFiles/awcotn.dir/awcotn/util.cc.o: CMakeFiles/awcotn.dir/flags.make
+CMakeFiles/awcotn.dir/awcotn/util.cc.o: awcotn/util.cc
+CMakeFiles/awcotn.dir/awcotn/util.cc.o: CMakeFiles/awcotn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/awcotn.dir/awcotn/util.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/awcotn.dir/awcotn/util.cc.o -MF CMakeFiles/awcotn.dir/awcotn/util.cc.o.d -o CMakeFiles/awcotn.dir/awcotn/util.cc.o -c /home/awcotn/workspace/webserve/awcotn/util.cc
+
+CMakeFiles/awcotn.dir/awcotn/util.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/awcotn.dir/awcotn/util.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/awcotn/workspace/webserve/awcotn/util.cc > CMakeFiles/awcotn.dir/awcotn/util.cc.i
+
+CMakeFiles/awcotn.dir/awcotn/util.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/awcotn.dir/awcotn/util.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"awcotn/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/awcotn/workspace/webserve/awcotn/util.cc -o CMakeFiles/awcotn.dir/awcotn/util.cc.s
+
 # Object files for target awcotn
 awcotn_OBJECTS = \
-"CMakeFiles/awcotn.dir/awcotn/log.cc.o" \
-"CMakeFiles/awcotn.dir/awcotn/util.cc.o" \
 "CMakeFiles/awcotn.dir/awcotn/config.cc.o" \
-"CMakeFiles/awcotn.dir/awcotn/thread.cc.o"
+"CMakeFiles/awcotn.dir/awcotn/fiber.cc.o" \
+"CMakeFiles/awcotn.dir/awcotn/log.cc.o" \
+"CMakeFiles/awcotn.dir/awcotn/thread.cc.o" \
+"CMakeFiles/awcotn.dir/awcotn/util.cc.o"
 
 # External object files for target awcotn
 awcotn_EXTERNAL_OBJECTS =
 
-lib/libawcotn.so: CMakeFiles/awcotn.dir/awcotn/log.cc.o
-lib/libawcotn.so: CMakeFiles/awcotn.dir/awcotn/util.cc.o
 lib/libawcotn.so: CMakeFiles/awcotn.dir/awcotn/config.cc.o
+lib/libawcotn.so: CMakeFiles/awcotn.dir/awcotn/fiber.cc.o
+lib/libawcotn.so: CMakeFiles/awcotn.dir/awcotn/log.cc.o
 lib/libawcotn.so: CMakeFiles/awcotn.dir/awcotn/thread.cc.o
+lib/libawcotn.so: CMakeFiles/awcotn.dir/awcotn/util.cc.o
 lib/libawcotn.so: CMakeFiles/awcotn.dir/build.make
 lib/libawcotn.so: CMakeFiles/awcotn.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library lib/libawcotn.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/awcotn/workspace/webserve/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared library lib/libawcotn.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/awcotn.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -369,11 +369,6 @@ public:
                 return nullptr;
             }
         }
-        auto tmp = Lookup<T>(name);
-        if(tmp) {
-            AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << "Lookup name=" << name << " exists";
-            return tmp;
-        }
 
         if(name.find_first_not_of("abcdefghijklmnopqrstuvwxyz._0123456789") != std::string::npos) {
             AWCOTN_LOG_ERROR(AWCOTN_LOG_ROOT()) << "Lookup name invalid " << name;

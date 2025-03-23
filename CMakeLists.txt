@@ -14,10 +14,11 @@ link_directories(/apps/awcotn/lib)
 find_library(YAMLCPP yaml-cpp)
 
 set(LIB_SRC
-    awcotn/log.cc
-    awcotn/util.cc
     awcotn/config.cc
+    awcotn/fiber.cc
+    awcotn/log.cc
     awcotn/thread.cc
+    awcotn/util.cc
     )
 
 add_library(awcotn SHARED ${LIB_SRC})
@@ -52,6 +53,11 @@ add_executable(test_util tests/test_util.cc)
 add_dependencies(test_util awcotn)
 force_redefine_file_macro_for_sources(test_util) #__FILE__
 target_link_libraries(test_util ${LIB_LIB})
+
+add_executable(test_fiber tests/test_fiber.cc)
+add_dependencies(test_fiber awcotn)
+force_redefine_file_macro_for_sources(test_fiber) #__FILE__
+target_link_libraries(test_fiber ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

@@ -4,6 +4,7 @@
 #include <string.h>
 #include <assert.h>
 #include "util.h"
+#include "log.h"
 
 #define AWCOTN_ASSERT(x) \
     if(!(x)) { \

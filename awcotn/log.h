@@ -17,7 +17,7 @@
 #define AWCOTN_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
         awcotn::LogEventWrap(awcotn::LogEvent::ptr(new awcotn::LogEvent(logger, level, __FILE__, __LINE__, 0, awcotn::GetThreadId(),\
-            awcotn::GetFiberId(), time(0)))).getSS()
+            awcotn::GetFiberId(), time(0), awcotn::Thread::GetName()))).getSS()
         
 #define AWCOTN_LOG_DEBUG(logger) AWCOTN_LOG_LEVEL(logger, awcotn::LogLevel::DEBUG)
 #define AWCOTN_LOG_INFO(logger) AWCOTN_LOG_LEVEL(logger, awcotn::LogLevel::INFO)
@@ -57,7 +57,8 @@ public:
     typedef std::shared_ptr<LogEvent> ptr;
     LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level
         , const char* file, int32_t line, uint32_t elapse
-        , uint32_t threadId, uint32_t fiberId, uint64_t time);
+        , uint32_t threadId, uint32_t fiberId, uint64_t time
+        , const std::string thread_name);
 
     
 
@@ -67,10 +68,11 @@ public:
     int32_t getThreadId() const { return m_threadId; }
     uint32_t getFiberId() const { return m_fiberId; }
     uint64_t getTime() const { return m_time; }
+    std::string getThreadName() const { return m_threadName; }
     std::string getContent() const { return m_ss.str(); }
     std::shared_ptr<Logger> getLogger() const { return m_logger; }
     LogLevel::Level getLevel() const { return m_level; }
-
+    
     std::stringstream& getSS() { return m_ss; }
     void format (const char* fmt, ...);
     void format (const char* fmt, va_list al);
@@ -81,6 +83,7 @@ private:
     int32_t m_threadId = 0;         //线程id 
     uint32_t m_fiberId = 0;         //协程id
     uint64_t m_time = 0;            //时间戳
+    std::string m_threadName;
     std::stringstream m_ss;    
     
     std::shared_ptr<Logger> m_logger;

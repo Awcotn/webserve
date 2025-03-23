@@ -1,6 +1,7 @@
 #include "util.h"
 #include "log.h"
 #include <execinfo.h>
+#include "fiber.h"
 
 namespace awcotn {
 
@@ -11,7 +12,7 @@ pid_t GetThreadId() {
 }
 
 uint32_t GetFiberId() {
-    return 0;
+    return awcotn::Fiber::GetFiberId();
 }
 
 void Backtrace(std::vector<std::string>& bt, int size, int skip) {

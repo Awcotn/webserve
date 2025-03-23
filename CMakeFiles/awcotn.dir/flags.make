@@ -8,11 +8,13 @@ CXX_INCLUDES = -I/home/awcotn/workspace/webserve -I/apps/awcotn/include
 
 CXX_FLAGS =  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-builtin-macro-redefined -fPIC
 
-# Custom defines: CMakeFiles/awcotn.dir/awcotn/log.cc.o_DEFINES = __FILE__="awcotn/log.cc"
-
-# Custom defines: CMakeFiles/awcotn.dir/awcotn/util.cc.o_DEFINES = __FILE__="awcotn/util.cc"
-
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/config.cc.o_DEFINES = __FILE__="awcotn/config.cc"
 
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/fiber.cc.o_DEFINES = __FILE__="awcotn/fiber.cc"
+
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/log.cc.o_DEFINES = __FILE__="awcotn/log.cc"
+
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/thread.cc.o_DEFINES = __FILE__="awcotn/thread.cc"
+
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/util.cc.o_DEFINES = __FILE__="awcotn/util.cc"
 

@@ -724,6 +724,10 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: \
  /usr/include/c++/11/bits/erase_if.h \
  /home/awcotn/workspace/webserve/awcotn/singleton.h \
  /home/awcotn/workspace/webserve/awcotn/util.h \
+ /usr/include/x86_64-linux-gnu/sys/syscall.h \
+ /usr/include/x86_64-linux-gnu/asm/unistd.h \
+ /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
+ /usr/include/x86_64-linux-gnu/bits/syscall.h \
  /home/awcotn/workspace/webserve/awcotn/thread.h \
  /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \
@@ -776,6 +780,4 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: \
  /usr/local/include/yaml-cpp/node/emit.h \
  /usr/include/c++/11/unordered_set \
  /usr/include/c++/11/bits/unordered_set.h \
- /home/awcotn/workspace/webserve/awcotn/log.h \
- /home/awcotn/workspace/webserve/awcotn/thread.h \
- /home/awcotn/workspace/webserve/awcotn/util.h
+ /home/awcotn/workspace/webserve/awcotn/macro.h

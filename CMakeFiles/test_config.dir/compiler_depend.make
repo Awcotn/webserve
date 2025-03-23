@@ -819,6 +819,10 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: tests/test_config.cc \
   /usr/include/c++/11/bits/erase_if.h \
   awcotn/singleton.h \
   awcotn/util.h \
+  /usr/include/x86_64-linux-gnu/sys/syscall.h \
+  /usr/include/x86_64-linux-gnu/asm/unistd.h \
+  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
+  /usr/include/x86_64-linux-gnu/bits/syscall.h \
   awcotn/thread.h \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/std_thread.h \
@@ -940,6 +944,12 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: tests/test_config.cc \
 /usr/include/c++/11/bits/this_thread_sleep.h:
 
 awcotn/thread.h:
+
+/usr/include/x86_64-linux-gnu/bits/syscall.h:
+
+/usr/include/x86_64-linux-gnu/asm/unistd_64.h:
+
+/usr/include/x86_64-linux-gnu/sys/syscall.h:
 
 awcotn/util.h:
 
@@ -1418,6 +1428,8 @@ awcotn/config.h:
 /usr/include/c++/11/bits/istream.tcc:
 
 /usr/include/boost/preprocessor/variadic/elem.hpp:
+
+/usr/include/x86_64-linux-gnu/asm/unistd.h:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
 

@@ -723,6 +723,10 @@ CMakeFiles/awcotn.dir/awcotn/config.cc.o: \
  /usr/include/c++/11/bits/erase_if.h \
  /home/awcotn/workspace/webserve/awcotn/singleton.h \
  /home/awcotn/workspace/webserve/awcotn/util.h \
+ /usr/include/x86_64-linux-gnu/sys/syscall.h \
+ /usr/include/x86_64-linux-gnu/asm/unistd.h \
+ /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
+ /usr/include/x86_64-linux-gnu/bits/syscall.h \
  /home/awcotn/workspace/webserve/awcotn/thread.h \
  /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \

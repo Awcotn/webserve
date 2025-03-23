@@ -820,6 +820,10 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: tests/test_thread.cc \
   /usr/include/c++/11/bits/erase_if.h \
   awcotn/singleton.h \
   awcotn/util.h \
+  /usr/include/x86_64-linux-gnu/sys/syscall.h \
+  /usr/include/x86_64-linux-gnu/asm/unistd.h \
+  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
+  /usr/include/x86_64-linux-gnu/bits/syscall.h \
   awcotn/thread.h \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/std_thread.h \
@@ -882,10 +886,10 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: tests/test_thread.cc \
   /usr/local/include/yaml-cpp/node/emit.h \
   /usr/include/c++/11/unordered_set \
   /usr/include/c++/11/bits/unordered_set.h \
-  awcotn/log.h \
-  awcotn/thread.h \
-  awcotn/util.h
+  awcotn/macro.h
 
+
+awcotn/macro.h:
 
 /usr/include/c++/11/unordered_set:
 
@@ -942,6 +946,12 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: tests/test_thread.cc \
 /usr/include/c++/11/bits/this_thread_sleep.h:
 
 awcotn/thread.h:
+
+/usr/include/x86_64-linux-gnu/bits/syscall.h:
+
+/usr/include/x86_64-linux-gnu/asm/unistd_64.h:
+
+/usr/include/x86_64-linux-gnu/sys/syscall.h:
 
 awcotn/util.h:
 
@@ -1414,6 +1424,8 @@ awcotn/config.h:
 /usr/include/c++/11/bits/istream.tcc:
 
 /usr/include/boost/preprocessor/variadic/elem.hpp:
+
+/usr/include/x86_64-linux-gnu/asm/unistd.h:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
 

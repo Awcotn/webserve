@@ -832,6 +832,7 @@ CMakeFiles/awcotn.dir/awcotn/config.cc.o: awcotn/config.cc \
   /usr/include/c++/11/bits/parse_numbers.h \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  awcotn/mutex.h \
   /usr/local/include/yaml-cpp/yaml.h \
   /usr/local/include/yaml-cpp/parser.h \
   /usr/local/include/yaml-cpp/dll.h \
@@ -1080,6 +1081,7 @@ CMakeFiles/awcotn.dir/awcotn/fiber.cc.o: awcotn/fiber.cc \
   /usr/include/c++/11/bits/basic_string.tcc \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  awcotn/mutex.h \
   awcotn/macro.h \
   /usr/include/string.h \
   /usr/include/strings.h \
@@ -2023,6 +2025,7 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o: awcotn/log.cc \
   /usr/include/c++/11/bits/std_function.h \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  awcotn/mutex.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/cstdarg \
   awcotn/config.h \
@@ -2853,6 +2856,7 @@ CMakeFiles/awcotn.dir/awcotn/thread.cc.o: awcotn/thread.cc \
   /usr/include/c++/11/bits/basic_string.tcc \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  awcotn/mutex.h \
   awcotn/log.h \
   /usr/include/c++/11/list \
   /usr/include/c++/11/bits/stl_list.h \
@@ -3157,6 +3161,7 @@ CMakeFiles/awcotn.dir/awcotn/util.cc.o: awcotn/util.cc \
   /usr/include/c++/11/bits/std_function.h \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  awcotn/mutex.h \
   /usr/include/execinfo.h \
   awcotn/fiber.h \
   /usr/include/ucontext.h \
@@ -4912,6 +4917,8 @@ awcotn/config.cc:
 /usr/include/c++/11/bits/std_thread.h:
 
 /usr/include/boost/preprocessor/logical/not.hpp:
+
+awcotn/mutex.h:
 
 /usr/include/boost/mpl/find.hpp:
 

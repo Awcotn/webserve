@@ -248,8 +248,11 @@ CMakeFiles/test.dir/tests/test.cc.o: tests/test.cc \
   /usr/include/c++/11/bits/std_function.h \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  awcotn/mutex.h \
   awcotn/util.h
 
+
+awcotn/mutex.h:
 
 /usr/include/c++/11/limits:
 

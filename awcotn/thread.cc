@@ -4,27 +4,6 @@
 
 namespace awcotn {
 
-Semaphore::Semaphore(uint32_t count) {
-    if(sem_init(&m_semaphore, 0, count)) {
-        throw std::logic_error("sem_init error");
-    }
-}
-Semaphore::~Semaphore() {
-    sem_destroy(&m_semaphore);
-}
-
-
-void Semaphore::wait() {
-    if(sem_wait(&m_semaphore)) {
-        return;
-    }
-}
-void Semaphore::notify() {
-    if(sem_post(&m_semaphore)) {
-        throw std::logic_error("sem_post error");
-    }
-}
-
 static thread_local Thread* t_thread = nullptr;
 static thread_local std::string t_thread_name = "UNKOWN";
 
@@ -85,6 +64,7 @@ void* Thread::run(void *arg) {
     Thread* thread = (Thread*)arg;
     t_thread = thread;
     thread->m_id = awcotn::GetThreadId();
+    t_thread_name = thread->m_name;
 
     pthread_setname_np(pthread_self(), thread->m_name.substr(0, 15).c_str());
 

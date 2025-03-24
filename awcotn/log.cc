@@ -579,18 +579,18 @@ void LogFormatter::init()
     static std::map<std::string, std::function<FormatItem::ptr(const std::string &str)>> s_format_items = {
 #define XX(str,C) \
         {#str,[](const std::string &fmt){return FormatItem::ptr(new C(fmt));}}
-        XX(m, MessageFormatItem),
-        XX(p, LevelFormatItem),
-        XX(r, ElapseFormatItem),
-        XX(c, NameFormatItem),
-        XX(t, ThreadFormatItem),
-        XX(n, NewLineFormatItem),
-        XX(d, DateTimeFormatItem),
-        XX(f, FilenameFormatItem),
-        XX(l, LineFormatItem),
-        XX(T, TabFormatItem),
-        XX(F, FiberFormatItem),
-        XX(N, ThreadNameFormatItem),
+        XX(m, MessageFormatItem),       //消息
+        XX(p, LevelFormatItem),         //日志级别
+        XX(r, ElapseFormatItem),        //启动后的时间
+        XX(c, NameFormatItem),          //日志名称
+        XX(t, ThreadFormatItem),        //线程id
+        XX(n, NewLineFormatItem),       //换行
+        XX(d, DateTimeFormatItem),      //时间
+        XX(f, FilenameFormatItem),      //文件名
+        XX(l, LineFormatItem),          //行号
+        XX(T, TabFormatItem),           //Tab
+        XX(F, FiberFormatItem),         //协程id
+        XX(N, ThreadNameFormatItem),    //线程名称
 #undef XX
     };
 

@@ -5,6 +5,7 @@
 #include <functional>
 #include <ucontext.h>
 #include "thread.h"
+#include "mutex.h"
 
 namespace awcotn {
 

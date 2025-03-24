@@ -17,6 +17,7 @@ set(LIB_SRC
     awcotn/config.cc
     awcotn/fiber.cc
     awcotn/log.cc
+    awcotn/mutex.cc
     awcotn/thread.cc
     awcotn/util.cc
     )

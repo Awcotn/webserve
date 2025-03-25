@@ -51,7 +51,7 @@ Fiber::Fiber()
     ++s_fiber_count;
     
 
-    AWCOTN_LOG_DEBUG(g_logger) << "Fiber::Fiber main";   
+    AWCOTN_LOG_DEBUG(g_logger) << "Fiber::Fiber main id=" << m_id;   
 }
 
 Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller) 

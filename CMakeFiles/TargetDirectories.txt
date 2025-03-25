@@ -4,5 +4,6 @@
 /home/awcotn/workspace/webserve/CMakeFiles/test_thread.dir
 /home/awcotn/workspace/webserve/CMakeFiles/test_util.dir
 /home/awcotn/workspace/webserve/CMakeFiles/test_fiber.dir
+/home/awcotn/workspace/webserve/CMakeFiles/test_scheduler.dir
 /home/awcotn/workspace/webserve/CMakeFiles/edit_cache.dir
 /home/awcotn/workspace/webserve/CMakeFiles/rebuild_cache.dir

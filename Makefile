@@ -197,6 +197,19 @@ test_fiber/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
 .PHONY : test_fiber/fast
 
+#=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
 awcotn/config.o: awcotn/config.cc.o
 .PHONY : awcotn/config.o
 
@@ -292,6 +305,30 @@ awcotn/mutex.s: awcotn/mutex.cc.s
 awcotn/mutex.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/mutex.cc.s
 .PHONY : awcotn/mutex.cc.s
+
+awcotn/scheduler.o: awcotn/scheduler.cc.o
+.PHONY : awcotn/scheduler.o
+
+# target to build an object file
+awcotn/scheduler.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o
+.PHONY : awcotn/scheduler.cc.o
+
+awcotn/scheduler.i: awcotn/scheduler.cc.i
+.PHONY : awcotn/scheduler.i
+
+# target to preprocess a source file
+awcotn/scheduler.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/scheduler.cc.i
+.PHONY : awcotn/scheduler.cc.i
+
+awcotn/scheduler.s: awcotn/scheduler.cc.s
+.PHONY : awcotn/scheduler.s
+
+# target to generate assembly for a file
+awcotn/scheduler.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/scheduler.cc.s
+.PHONY : awcotn/scheduler.cc.s
 
 awcotn/thread.o: awcotn/thread.cc.o
 .PHONY : awcotn/thread.o
@@ -413,6 +450,30 @@ tests/test_fiber.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
 
+tests/test_scheduler.o: tests/test_scheduler.cc.o
+.PHONY : tests/test_scheduler.o
+
+# target to build an object file
+tests/test_scheduler.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
+.PHONY : tests/test_scheduler.cc.o
+
+tests/test_scheduler.i: tests/test_scheduler.cc.i
+.PHONY : tests/test_scheduler.i
+
+# target to preprocess a source file
+tests/test_scheduler.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
+.PHONY : tests/test_scheduler.cc.i
+
+tests/test_scheduler.s: tests/test_scheduler.cc.s
+.PHONY : tests/test_scheduler.s
+
+# target to generate assembly for a file
+tests/test_scheduler.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
+.PHONY : tests/test_scheduler.cc.s
+
 tests/test_thread.o: tests/test_thread.cc.o
 .PHONY : tests/test_thread.o
 
@@ -473,6 +534,7 @@ help:
 	@echo "... test"
 	@echo "... test_config"
 	@echo "... test_fiber"
+	@echo "... test_scheduler"
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... awcotn/config.o"
@@ -487,6 +549,9 @@ help:
 	@echo "... awcotn/mutex.o"
 	@echo "... awcotn/mutex.i"
 	@echo "... awcotn/mutex.s"
+	@echo "... awcotn/scheduler.o"
+	@echo "... awcotn/scheduler.i"
+	@echo "... awcotn/scheduler.s"
 	@echo "... awcotn/thread.o"
 	@echo "... awcotn/thread.i"
 	@echo "... awcotn/thread.s"
@@ -502,6 +567,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"

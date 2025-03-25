@@ -14,6 +14,8 @@ CXX_FLAGS =  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function 
 
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/log.cc.o_DEFINES = __FILE__="awcotn/log.cc"
 
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o_DEFINES = __FILE__="awcotn/scheduler.cc"
+
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/mutex.cc.o_DEFINES = __FILE__="awcotn/mutex.cc"
 
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/thread.cc.o_DEFINES = __FILE__="awcotn/thread.cc"

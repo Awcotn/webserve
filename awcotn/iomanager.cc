@@ -100,6 +100,16 @@ void IOManager::contextResize(size_t size) {
  * @details 该函数将一个文件描述符的指定事件注册到epoll中，并设置对应的回调
  */
 int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
+
+
+    if(m_stopping) {
+        AWCOTN_LOG_ERROR(g_logger) << "addEvent failed: scheduler is stopping";
+        return -1;
+    }
+
+    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
+        << " event=" << event;
+
     // 获取文件描述符对应的上下文对象
     FdContext* fd_ctx = nullptr;
     // 读锁保护，尝试从已有列表获取fd上下文
@@ -116,9 +126,11 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         fd_ctx = m_fdContexts[fd];
     }
 
+    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
+        << " event=" << event;
+
     // 锁定特定fd的上下文，保证fd操作的线程安全
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
-
     // 确保不重复添加同一事件
     if(fd_ctx->events & event) {
         AWCOTN_LOG_ERROR(g_logger) << "addEvent assert fd=" << fd
@@ -126,6 +138,9 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
             << " fd_ctx.event=" << fd_ctx->events;
         AWCOTN_ASSERT(!(fd_ctx->events & event));
     }
+
+    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
+        << " event=" << event;
 
     // 根据文件描述符当前状态确定epoll操作类型
     int op = fd_ctx->events ? EPOLL_CTL_MOD : EPOLL_CTL_ADD;
@@ -157,6 +172,7 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         return -1;
     }
     
+
     // 增加待处理事件计数
     m_pendingEventCount++;
     // 更新文件描述符上下文中的事件标志位
@@ -180,6 +196,10 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         // 确保当前协程处于运行状态
         AWCOTN_ASSERT(event_ctx.fiber->getState() == Fiber::EXEC);
     }
+
+    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
+        << " event=" << event
+        << " op=" << op;
     return 0;
 }
 

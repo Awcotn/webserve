@@ -34,6 +34,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name)
 
 Scheduler::~Scheduler() {
     AWCOTN_ASSERT(m_stopping);
+    AWCOTN_LOG_INFO(g_logger) << this << " deconstruction";
     if(GetThis() == this) {
         t_scheduler = nullptr;
     }
@@ -103,7 +104,7 @@ void Scheduler::stop() {
     if(m_rootFiber) {
         tickle();
     }
-
+    
     if(m_rootFiber) {
         // while(!stopping()) {
         //     if(m_rootFiber->getState() == Fiber::TERM || m_rootFiber->getState() == Fiber::EXCEPT) {
@@ -127,7 +128,7 @@ void Scheduler::stop() {
     for(auto& i : thrs) {
         i->join();
     }
-
+    AWCOTN_LOG_INFO(g_logger) << this << " stopped";
     // if(stopping()) {
     //     return;
     // }

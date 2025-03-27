@@ -1,17 +1,45 @@
 #include "iomanager.h"
 #include "macro.h"
 #include "log.h"
-
 #include <sys/epoll.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
 
-
 namespace awcotn {
 
 static awcotn::Logger::ptr g_logger = AWCOTN_LOG_NAME("system");
+
+FdContext::EventContext& IOManager::FdContext::getContext(Event event) {
+     switch(event) {
+        case READ:
+            return read;
+        case WRITE:
+            return write;
+        default:
+            AWCOTN_ASSERT2(false, "getContext");
+    }
+}
+
+void IOManager::FdContext::resetContext(EventContext& ctx) {
+    ctx.scheduler = nullptr;
+    ctx.fiber.reset();
+    ctx.cb = nullptr;
+}
+
+void IOManager::FdContext::triggerEvent(IOManager::Event event) {
+    AWCOTN_ASSERT(events & event);
+    events = (Event)(events & ~event);
+    EventContext& ctx = getContext(event);  
+    if(ctx.cb) {
+        ctx.scheduler->schedule(&ctx.cb);
+    } else {
+        ctx.scheduler->schedule(&ctx.fiber);
+    } 
+    ctx.scheduler = nullptr;
+    return;
+}
 
 IOManager::IOManager(size_t threads, bool use_caller, const std::string& name) 
     : Scheduler(threads, use_caller, name) {
@@ -156,18 +184,128 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
 }
 
 bool IOManager::delEvent(int fd, Event event) {
-    
+    RWMutexType::ReadLock lock(m_mutex);
+    if(fd >= m_fdContexts.size()) {
+        return false;
+    }
+    FdContext* fd_ctx = m_fdContexts[fd];
+    lock.unlock();
+
+    FdContext::MutexType::Lock lock2(fd_ctx->mutex);
+    if(!(fd_ctx->events & event)) {
+        return false;
+    }
+
+    Event new_events = (Event)(fd_ctx->events & ~event);
+    int op = new_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
+    epoll_event epevent;
+    epevent.events = EPOLLET | new_events;
+    epevent.data.ptr = fd_ctx;
+
+    int rt = epoll_ctl(m_epfd, op, fd, &epevent);
+    if(rt) {
+        AWCOTN_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
+            << op << ", " << fd << ", " << epevent.events << "):"
+            << rt << " (" << errno << ") (" << strerror(errno) << ")";
+        return false;
+    }
+
+    m_pendingEventCount--;
+    fd_ctx->events = new_events;
+    FdContext::EventContext& event_ctx = fd_ctx->getContext(event);
+    fd_ctx->resetContext(event_ctx);
+    return true;
 }
 
 bool IOManager::cancelEvent(int fd, Event event) {
+    RWMutexType::ReadLock lock(m_mutex);
+    if(fd >= m_fdContexts.size()) {
+        return false;
+    }
+    FdContext* fd_ctx = m_fdContexts[fd];
+    lock.unlock();
 
+    FdContext::MutexType::Lock lock2(fd_ctx->mutex);
+    if(!(fd_ctx->events & event)) {
+        return false;
+    }
+
+    Event new_events = (Event)(fd_ctx->events & ~event);
+    int op = new_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
+    epoll_event epevent;
+    epevent.events = EPOLLET | new_events;
+    epevent.data.ptr = fd_ctx;
+
+    int rt = epoll_ctl(m_epfd, op, fd, &epevent);
+    if(rt) {
+        AWCOTN_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
+            << op << ", " << fd << ", " << epevent.events << "):"
+            << rt << " (" << errno << ") (" << strerror(errno) << ")";
+        return false;
+    }
+
+    m_pendingEventCount--;
+    FdContext::EventContext& event_ctx = fd_ctx->getContext(event);
+    fd_ctx->triggerEvent(event);
+   
+    return true;
 }
 
 bool IOManager::cancelAll(int fd) {
+    RWMutexType::ReadLock lock(m_mutex);
+    if(fd >= m_fdContexts.size()) {
+        return false;
+    }
+    FdContext* fd_ctx = m_fdContexts[fd];
+    lock.unlock();
 
+    FdContext::MutexType::Lock lock2(fd_ctx->mutex);
+    if(!fd_ctx->events) {
+        return false;
+    }
+
+    int op = EPOLL_CTL_DEL;
+    epoll_event epevent;
+    epevent.events = 0;
+    epevent.data.ptr = fd_ctx;
+
+    int rt = epoll_ctl(m_epfd, op, fd, &epevent);
+    if(rt) {
+        AWCOTN_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
+            << op << ", " << fd << ", " << epevent.events << "):"
+            << rt << " (" << errno << ") (" << strerror(errno) << ")";
+        return false;
+    }
+
+    if(fd_ctx->events & READ) {
+        fd_ctx->triggerEvent(READ);
+        m_pendingEventCount --;
+    }
+    if(fd_ctx->events & WRITE) {
+        fd_ctx->triggerEvent(WRITE);
+        m_pendingEventCount --;
+    }
+
+    AWCOTN_ASSERT(fd_ctx->events == 0);
+    return true;
 }
 
 IOManager* IOManager::GetThis() {
+    return dynamic_cast<IOManager*>(Scheduler::GetThis());
+}
+
+void IOManager::tickle() {
+    int rt = write(m_tickleFds[1], "T", 1);
+    AWCOTN_ASSERT(rt == 1);
+    
+}
+
+bool IOManager::stopping() {
 
 }
+
+void IOManager::idle() {
+
+}
+
 }

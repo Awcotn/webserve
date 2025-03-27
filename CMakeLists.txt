@@ -8,14 +8,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -rdynamic -ggdb -O0 -Wall  -W
 -Wno-unused-function -Wno-builtin-macro-redefined")
 
 include_directories(${PROJECT_SOURCE_DIR})
-include_directories(/apps/awcotn/include)
-link_directories(/apps/awcotn/lib)
+include_directories(/apps/root/include)
+link_directories(/apps/root/lib)
 
 find_library(YAMLCPP yaml-cpp)
 
 set(LIB_SRC
     awcotn/config.cc
     awcotn/fiber.cc
+    awcotn/iomanager.cc
     awcotn/log.cc
     awcotn/scheduler.cc
     awcotn/mutex.cc
@@ -65,6 +66,11 @@ add_executable(test_scheduler tests/test_scheduler.cc)
 add_dependencies(test_scheduler awcotn)
 force_redefine_file_macro_for_sources(test_scheduler) #__FILE__
 target_link_libraries(test_scheduler ${LIB_LIB})
+
+add_executable(test_iomanagar tests/test_iomanager.cc)
+add_dependencies(test_iomanagar awcotn)
+force_redefine_file_macro_for_sources(test_iomanagar) #__FILE__
+target_link_libraries(test_iomanagar ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

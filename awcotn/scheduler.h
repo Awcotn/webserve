@@ -16,6 +16,8 @@ public:
     Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "");
     virtual ~Scheduler();
 
+    const std::string& getName() const { return m_name; }
+
     static Scheduler* GetThis();
     static Fiber* GetMainFiber();
 
@@ -55,6 +57,8 @@ protected:
     virtual void idle();
 
     void setThis();
+
+    bool hasIdleThreads() { return m_idleThreadCount > 0; }
 
 private:
     template<class FiberOrCb>

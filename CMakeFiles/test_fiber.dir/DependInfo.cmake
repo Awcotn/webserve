@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/awcotn/workspace/webserve/tests/test_fiber.cc" "CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o" "gcc" "CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o.d"
+  "/root/workspace/webserve/tests/test_fiber.cc" "CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o" "gcc" "CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/awcotn/workspace/webserve/CMakeFiles/awcotn.dir/DependInfo.cmake"
+  "/root/workspace/webserve/CMakeFiles/awcotn.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

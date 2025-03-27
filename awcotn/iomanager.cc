@@ -11,7 +11,7 @@ namespace awcotn {
 
 static awcotn::Logger::ptr g_logger = AWCOTN_LOG_NAME("system");
 
-FdContext::EventContext& IOManager::FdContext::getContext(Event event) {
+IOManager::FdContext::EventContext& IOManager::FdContext::getContext(Event event) {
      switch(event) {
         case READ:
             return read;
@@ -19,7 +19,7 @@ FdContext::EventContext& IOManager::FdContext::getContext(Event event) {
             return write;
         default:
             AWCOTN_ASSERT2(false, "getContext");
-    }
+    };
 }
 
 void IOManager::FdContext::resetContext(EventContext& ctx) {
@@ -47,7 +47,7 @@ IOManager::IOManager(size_t threads, bool use_caller, const std::string& name)
     AWCOTN_ASSERT(m_epfd > 0);   
 
     int rt = pipe(m_tickleFds);
-    AWCOTN_ASSERT(rt);
+    AWCOTN_ASSERT(!rt);
 
     epoll_event event;
     memset(&event, 0, sizeof(epoll_event));
@@ -59,7 +59,7 @@ IOManager::IOManager(size_t threads, bool use_caller, const std::string& name)
 
     rt = epoll_ctl(m_epfd, EPOLL_CTL_ADD, m_tickleFds[0], &event);
 
-    AWCOTN_ASSERT(rt);
+    AWCOTN_ASSERT(!rt);
 
     m_fdContexts.resize(32);
         
@@ -104,7 +104,7 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
     FdContext* fd_ctx = nullptr;
     // 读锁保护，尝试从已有列表获取fd上下文
     RWMutexType::ReadLock lock(m_mutex);
-    if(fd < m_fdContexts.size()) {
+    if(fd < (int)m_fdContexts.size()) {
         fd_ctx = m_fdContexts[fd];
         lock.unlock();
     } else {
@@ -112,7 +112,7 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         lock.unlock();
         RWMutexType::WriteLock lock2(m_mutex);
         // 扩容策略：当前大小的1.5倍
-        contextResize(m_fdContexts.size() * 1.5);
+        contextResize(fd * 1.5);
         fd_ctx = m_fdContexts[fd];
     }
 
@@ -185,7 +185,7 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
 
 bool IOManager::delEvent(int fd, Event event) {
     RWMutexType::ReadLock lock(m_mutex);
-    if(fd >= m_fdContexts.size()) {
+    if(fd >= (int)m_fdContexts.size()) {
         return false;
     }
     FdContext* fd_ctx = m_fdContexts[fd];
@@ -219,7 +219,7 @@ bool IOManager::delEvent(int fd, Event event) {
 
 bool IOManager::cancelEvent(int fd, Event event) {
     RWMutexType::ReadLock lock(m_mutex);
-    if(fd >= m_fdContexts.size()) {
+    if(fd >= (int)m_fdContexts.size()) {
         return false;
     }
     FdContext* fd_ctx = m_fdContexts[fd];
@@ -245,7 +245,6 @@ bool IOManager::cancelEvent(int fd, Event event) {
     }
 
     m_pendingEventCount--;
-    FdContext::EventContext& event_ctx = fd_ctx->getContext(event);
     fd_ctx->triggerEvent(event);
    
     return true;
@@ -253,7 +252,7 @@ bool IOManager::cancelEvent(int fd, Event event) {
 
 bool IOManager::cancelAll(int fd) {
     RWMutexType::ReadLock lock(m_mutex);
-    if(fd >= m_fdContexts.size()) {
+    if(fd >= (int)m_fdContexts.size()) {
         return false;
     }
     FdContext* fd_ctx = m_fdContexts[fd];
@@ -295,17 +294,128 @@ IOManager* IOManager::GetThis() {
 }
 
 void IOManager::tickle() {
+    if(hasIdleThreads()) {
+        return;
+    }
     int rt = write(m_tickleFds[1], "T", 1);
     AWCOTN_ASSERT(rt == 1);
-    
 }
 
 bool IOManager::stopping() {
-
+    return Scheduler::stopping() && m_pendingEventCount == 0;
 }
 
 void IOManager::idle() {
+    // 分配一个长度为64的epoll_event数组，用于存储从epoll_wait返回的事件
+    // 使用()初始化确保所有元素被零初始化
+    epoll_event* events = new epoll_event[64]();
+    // 使用智能指针管理events的生命周期，确保在函数退出时自动释放内存
+    std::shared_ptr<epoll_event> shared_events(events, [](epoll_event* ptr){
+        delete[] ptr;
+    });
 
+    while(true) {
+        // 检查调度器是否应该停止
+        // stopping()返回true当且仅当调度器需要停止且没有挂起的事件
+        if(stopping()) {
+            AWCOTN_LOG_INFO(g_logger) << "name=" << getName() << " idle stopping exit";
+            break;
+        }
+        
+        int rt = 0; // 存储epoll_wait返回的事件数量
+        while(true) {
+            static const int MAX_TIMEOUT = 5000; // 最大超时时间为5秒(5000毫秒)
+            // 等待epoll事件发生:
+            // m_epfd: epoll实例的文件描述符
+            // events: 存储返回事件的数组
+            // 64: 数组的大小，最多一次处理64个事件
+            // MAX_TIMEOUT: 超时时间(毫秒)，如果没有事件发生，最多等待这么长时间
+            rt = epoll_wait(m_epfd, events, 64, MAX_TIMEOUT);
+
+            // 处理系统调用被信号中断的情况(EINTR)
+            // 如果是因为信号中断导致的返回，则重新调用epoll_wait
+            if(rt < 0 && errno == EINTR) {
+                // 空操作，继续下一次循环
+            } else {
+                // 其他情况(包括正常返回事件或错误)跳出循环
+                break;
+            }
+        } 
+        
+        // 处理所有返回的事件，rt是返回的事件数量
+        for(int i = 0; i < rt; i++) {
+            epoll_event& event = events[i]; // 当前处理的事件
+            
+            // 检查是否是tickle事件(用于唤醒idle线程的特殊事件)
+            if(event.data.fd == m_tickleFds[0]) {
+                uint8_t dummy;
+                // 清空管道中的所有数据，防止同一事件被多次触发
+                while(read(m_tickleFds[0], &dummy, 1) == 1);
+                continue; // 继续处理下一个事件
+            }
+            
+            // 获取事件关联的文件描述符上下文
+            FdContext* fd_ctx = (FdContext*)event.data.ptr;
+            // 锁定该文件描述符的互斥量，确保线程安全
+            FdContext::MutexType::Lock lock(fd_ctx->mutex);
+            
+            // 如果发生了错误(EPOLLERR)或挂起(EPOLLHUP)事件
+            // 将其同时视为可读和可写事件，这样可以让应用程序尝试读写并获得具体的错误信息
+            if(event.events & (EPOLLERR | EPOLLHUP)) {
+                event.events |= EPOLLIN | EPOLLOUT;
+            }
+            
+            // 将epoll事件映射到IOManager定义的事件类型(READ/WRITE)
+            int real_events = NONE; // 初始化为无事件
+            if(event.events & EPOLLIN) {
+                real_events |= READ; // 可读事件
+            }
+            if(event.events & EPOLLOUT) {
+                real_events |= WRITE; // 可写事件
+            }
+            
+            // 如果实际触发的事件与fd_ctx注册的事件没有交集，则跳过
+            // 这可能发生在事件已被取消但epoll通知尚未处理完的情况
+            if((fd_ctx->events & real_events) == NONE) {
+                continue;
+            }
+            
+            // 计算剩余事件：从fd_ctx的事件中移除已触发的事件
+            int left_events = (fd_ctx->events & ~real_events);
+            // 确定epoll操作类型：如果还有剩余事件则修改，否则删除
+            int op = left_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
+            // 设置epoll事件，使用边缘触发模式(EPOLLET)
+            event.events = EPOLLET | left_events;
+            
+            // 更新epoll实例中的事件设置
+            int rt2 = epoll_ctl(m_epfd, op, fd_ctx->fd, &event);
+            if(rt2) {
+                // 如果更新失败，记录错误信息但继续处理其他事件
+                AWCOTN_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
+                    << op << ", " << fd_ctx->fd << ", " << event.events << "):"
+                    << rt2 << " (" << errno << ") (" << strerror(errno) << ")";
+                continue;
+            }
+            
+            // 触发读事件回调：如果有READ事件发生且fd注册了READ事件
+            if(real_events & READ) {
+                fd_ctx->triggerEvent(READ); // 触发注册的读事件回调
+                --m_pendingEventCount; // 减少待处理事件计数
+            }
+            // 触发写事件回调：如果有WRITE事件发生且fd注册了WRITE事件
+            if(real_events & WRITE) {
+                fd_ctx->triggerEvent(WRITE); // 触发注册的写事件回调
+                --m_pendingEventCount; // 减少待处理事件计数
+            }
+        }
+
+        Fiber::ptr cur = Fiber::GetThis();
+        auto raw_ptr = cur.get();
+        cur.reset();
+
+        raw_ptr->swapOut();
+    }
 }
+
 
 }

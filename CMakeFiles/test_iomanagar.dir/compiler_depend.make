@@ -1003,8 +1003,17 @@ CMakeFiles/test_iomanagar.dir/tests/test_iomanager.cc.o: tests/test_iomanager.cc
   /usr/include/bits/fcntl.h \
   /usr/include/bits/fcntl-linux.h \
   /usr/include/linux/falloc.h \
-  /usr/include/bits/stat.h
+  /usr/include/bits/stat.h \
+  /usr/include/c++/8/iostream \
+  /usr/include/sys/epoll.h \
+  /usr/include/bits/epoll.h
 
+
+/usr/include/bits/epoll.h:
+
+/usr/include/sys/epoll.h:
+
+/usr/include/c++/8/iostream:
 
 /usr/include/bits/stat.h:
 

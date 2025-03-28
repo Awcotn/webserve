@@ -61,7 +61,8 @@ IOManager::IOManager(size_t threads, bool use_caller, const std::string& name)
 
     AWCOTN_ASSERT(!rt);
 
-    m_fdContexts.resize(32);
+    contextResize(32);
+    //m_fdContexts.resize(32);
         
     start();
 
@@ -102,13 +103,9 @@ void IOManager::contextResize(size_t size) {
 int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
 
 
-    if(m_stopping) {
-        AWCOTN_LOG_ERROR(g_logger) << "addEvent failed: scheduler is stopping";
-        return -1;
-    }
 
-    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
-        << " event=" << event;
+    // AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
+    //     << " event=" << event;
 
     // 获取文件描述符对应的上下文对象
     FdContext* fd_ctx = nullptr;
@@ -126,8 +123,8 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         fd_ctx = m_fdContexts[fd];
     }
 
-    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
-        << " event=" << event;
+    // AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
+    //     << " event=" << event;
 
     // 锁定特定fd的上下文，保证fd操作的线程安全
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
@@ -139,8 +136,8 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         AWCOTN_ASSERT(!(fd_ctx->events & event));
     }
 
-    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
-        << " event=" << event;
+    // AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
+    //     << " event=" << event;
 
     // 根据文件描述符当前状态确定epoll操作类型
     int op = fd_ctx->events ? EPOLL_CTL_MOD : EPOLL_CTL_ADD;
@@ -196,10 +193,6 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         // 确保当前协程处于运行状态
         AWCOTN_ASSERT(event_ctx.fiber->getState() == Fiber::EXEC);
     }
-
-    AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
-        << " event=" << event
-        << " op=" << op;
     return 0;
 }
 

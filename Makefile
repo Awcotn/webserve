@@ -120,6 +120,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_iomanager
+
+# Build rule for target.
+test_iomanager: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_iomanager
+.PHONY : test_iomanager
+
+# fast build rule for target.
+test_iomanager/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
+.PHONY : test_iomanager/fast
+
+#=============================================================================
 # Target rules for targets named test_scheduler
 
 # Build rule for target.
@@ -131,19 +144,6 @@ test_scheduler: cmake_check_build_system
 test_scheduler/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
 .PHONY : test_scheduler/fast
-
-#=============================================================================
-# Target rules for targets named test_iomanagar
-
-# Build rule for target.
-test_iomanagar: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_iomanagar
-.PHONY : test_iomanagar
-
-# fast build rule for target.
-test_iomanagar/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanagar.dir/build.make CMakeFiles/test_iomanagar.dir/build
-.PHONY : test_iomanagar/fast
 
 #=============================================================================
 # Target rules for targets named test
@@ -492,7 +492,7 @@ tests/test_iomanager.o: tests/test_iomanager.cc.o
 
 # target to build an object file
 tests/test_iomanager.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanagar.dir/build.make CMakeFiles/test_iomanagar.dir/tests/test_iomanager.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o
 .PHONY : tests/test_iomanager.cc.o
 
 tests/test_iomanager.i: tests/test_iomanager.cc.i
@@ -500,7 +500,7 @@ tests/test_iomanager.i: tests/test_iomanager.cc.i
 
 # target to preprocess a source file
 tests/test_iomanager.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanagar.dir/build.make CMakeFiles/test_iomanagar.dir/tests/test_iomanager.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.i
 .PHONY : tests/test_iomanager.cc.i
 
 tests/test_iomanager.s: tests/test_iomanager.cc.s
@@ -508,7 +508,7 @@ tests/test_iomanager.s: tests/test_iomanager.cc.s
 
 # target to generate assembly for a file
 tests/test_iomanager.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanagar.dir/build.make CMakeFiles/test_iomanagar.dir/tests/test_iomanager.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.s
 .PHONY : tests/test_iomanager.cc.s
 
 tests/test_scheduler.o: tests/test_scheduler.cc.o
@@ -595,7 +595,7 @@ help:
 	@echo "... test"
 	@echo "... test_config"
 	@echo "... test_fiber"
-	@echo "... test_iomanagar"
+	@echo "... test_iomanager"
 	@echo "... test_scheduler"
 	@echo "... test_thread"
 	@echo "... test_util"

@@ -170,7 +170,7 @@ void Scheduler::run() {
                 ft = *it;
                 m_fibers.erase(it);
                 ++m_activeThreadCount;
-                
+                AWCOTN_LOG_INFO(g_logger) << "find fiber=" << m_fibers.size();
                 break;
             }
             tickle_me = tickle_me || !m_fibers.empty();

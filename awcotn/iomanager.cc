@@ -69,6 +69,7 @@ IOManager::IOManager(size_t threads, bool use_caller, const std::string& name)
 }
 
 IOManager::~IOManager() {
+    AWCOTN_LOG_INFO(g_logger) << "IOManager::~IOManager";
     stop();
     close(m_epfd);
     close(m_tickleFds[0]);

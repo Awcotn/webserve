@@ -50,8 +50,10 @@ void test_fiber() {
 void test1() {
     std::cout << "EPOLLIN=" << EPOLLIN
               << " EPOLLOUT=" << EPOLLOUT << std::endl;
-    awcotn::IOManager iom(2, false);
+    awcotn::IOManager iom(1, false);
     iom.schedule(&test_fiber);
+
+    AWCOTN_LOG_INFO(g_logger) << "test1";
 }
 
 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-builtin-macro-redefined -rdynamic CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o -o bin/test_iomanager   -L/apps/root/lib  -Wl,-rpath,/apps/root/lib:/root/workspace/webserve/lib lib/libawcotn.so -lpthread /usr/local/lib64/libyaml-cpp.a 

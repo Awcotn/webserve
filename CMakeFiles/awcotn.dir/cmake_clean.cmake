@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o.d"
   "CMakeFiles/awcotn.dir/awcotn/thread.cc.o"
   "CMakeFiles/awcotn.dir/awcotn/thread.cc.o.d"
+  "CMakeFiles/awcotn.dir/awcotn/timer.cc.o"
+  "CMakeFiles/awcotn.dir/awcotn/timer.cc.o.d"
   "CMakeFiles/awcotn.dir/awcotn/util.cc.o"
   "CMakeFiles/awcotn.dir/awcotn/util.cc.o.d"
   "lib/libawcotn.pdb"

@@ -391,6 +391,30 @@ awcotn/thread.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/thread.cc.s
 .PHONY : awcotn/thread.cc.s
 
+awcotn/timer.o: awcotn/timer.cc.o
+.PHONY : awcotn/timer.o
+
+# target to build an object file
+awcotn/timer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/timer.cc.o
+.PHONY : awcotn/timer.cc.o
+
+awcotn/timer.i: awcotn/timer.cc.i
+.PHONY : awcotn/timer.i
+
+# target to preprocess a source file
+awcotn/timer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/timer.cc.i
+.PHONY : awcotn/timer.cc.i
+
+awcotn/timer.s: awcotn/timer.cc.s
+.PHONY : awcotn/timer.s
+
+# target to generate assembly for a file
+awcotn/timer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/timer.cc.s
+.PHONY : awcotn/timer.cc.s
+
 awcotn/util.o: awcotn/util.cc.o
 .PHONY : awcotn/util.o
 
@@ -620,6 +644,9 @@ help:
 	@echo "... awcotn/thread.o"
 	@echo "... awcotn/thread.i"
 	@echo "... awcotn/thread.s"
+	@echo "... awcotn/timer.o"
+	@echo "... awcotn/timer.i"
+	@echo "... awcotn/timer.s"
 	@echo "... awcotn/util.o"
 	@echo "... awcotn/util.i"
 	@echo "... awcotn/util.s"

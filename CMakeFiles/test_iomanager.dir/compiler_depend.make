@@ -986,6 +986,9 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: tests/test_iomanager.cc
   /usr/include/bits/types/stack_t.h \
   awcotn/scheduler.h \
   awcotn/iomanager.h \
+  awcotn/timer.h \
+  /usr/include/sys/epoll.h \
+  /usr/include/bits/epoll.h \
   /usr/include/sys/socket.h \
   /usr/include/bits/types/struct_iovec.h \
   /usr/include/bits/socket.h \
@@ -1005,13 +1008,8 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: tests/test_iomanager.cc
   /usr/include/linux/falloc.h \
   /usr/include/bits/stat.h \
   /usr/include/c++/8/iostream \
-  /usr/include/sys/epoll.h \
-  /usr/include/bits/epoll.h
+  awcotn/timer.h
 
-
-/usr/include/bits/epoll.h:
-
-/usr/include/sys/epoll.h:
 
 /usr/include/c++/8/iostream:
 
@@ -1028,6 +1026,12 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: tests/test_iomanager.cc
 /usr/include/asm-generic/sockios.h:
 
 /usr/include/sys/socket.h:
+
+/usr/include/bits/epoll.h:
+
+/usr/include/sys/epoll.h:
+
+awcotn/timer.h:
 
 awcotn/iomanager.h:
 

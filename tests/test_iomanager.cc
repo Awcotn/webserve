@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <iostream>
 #include <sys/epoll.h>
+#include "awcotn/timer.h"
 
 awcotn::Logger::ptr g_logger = AWCOTN_LOG_ROOT();
 
@@ -56,8 +57,21 @@ void test1() {
     AWCOTN_LOG_INFO(g_logger) << "test1";
 }
 
+awcotn::Timer::ptr s_timer;
+void test_timer() {
+    awcotn::IOManager iom(2);
+    s_timer = iom.addTimer(1000, [](){
+        static int i = 0;
+        AWCOTN_LOG_INFO(g_logger) << "hello timer i=" << i;
+        if(++i == 3) {
+            //s_timer->reset(2000, true);
+            s_timer->cancel();
+        }
+    }, true);
+}
+
 
 int main(int argc, char** argv) {
-    test1();
+    test_timer();
     return 0;
 }

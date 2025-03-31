@@ -20,6 +20,8 @@ CXX_FLAGS =  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function 
 
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/mutex.cc.o_DEFINES = __FILE__="awcotn/mutex.cc"
 
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/timer.cc.o_DEFINES = __FILE__="awcotn/timer.cc"
+
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/thread.cc.o_DEFINES = __FILE__="awcotn/thread.cc"
 
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/util.cc.o_DEFINES = __FILE__="awcotn/util.cc"

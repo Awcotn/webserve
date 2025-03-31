@@ -20,6 +20,7 @@ set(LIB_SRC
     awcotn/log.cc
     awcotn/scheduler.cc
     awcotn/mutex.cc
+    awcotn/timer.cc
     awcotn/thread.cc
     awcotn/util.cc
     )

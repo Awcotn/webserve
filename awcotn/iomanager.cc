@@ -316,8 +316,16 @@ void IOManager::tickle() {
 }
 
 bool IOManager::stopping() {
-    return Scheduler::stopping() && m_pendingEventCount == 0;
+    uint64_t timeout = getNextTimer();
+    return stopping(timeout);
 }
+
+bool IOManager::stopping(uint64_t timeout) {
+    timeout = getNextTimer();
+    return timeout == ~0ull
+        && m_pendingEventCount == 0
+        && Scheduler::stopping();
+} 
 
 void IOManager::idle() {
     // 分配一个长度为64的epoll_event数组，用于存储从epoll_wait返回的事件
@@ -331,20 +339,30 @@ void IOManager::idle() {
     while(true) {
         // 检查调度器是否应该停止
         // stopping()返回true当且仅当调度器需要停止且没有挂起的事件
-        if(stopping()) {
+        uint64_t next_timeout = 0;
+        if(stopping(next_timeout)) {
             AWCOTN_LOG_INFO(g_logger) << "name=" << getName() << " idle stopping exit";
             break;
         }
+
+        
         
         int rt = 0; // 存储epoll_wait返回的事件数量
         while(true) {
-            static const int MAX_TIMEOUT = 5000; // 最大超时时间为5秒(5000毫秒)
+            static const int MAX_TIMEOUT = 1000; // 最大超时时间为1秒(1000毫秒)
+            if(next_timeout != ~0ull) {
+                // 如果有定时器，计算下一个超时时间
+                next_timeout = (int)next_timeout > MAX_TIMEOUT ? MAX_TIMEOUT : next_timeout;
+            } else {
+                next_timeout = MAX_TIMEOUT;
+            }
+
             // 等待epoll事件发生:
             // m_epfd: epoll实例的文件描述符
             // events: 存储返回事件的数组
             // 64: 数组的大小，最多一次处理64个事件
             // MAX_TIMEOUT: 超时时间(毫秒)，如果没有事件发生，最多等待这么长时间
-            rt = epoll_wait(m_epfd, events, 64, MAX_TIMEOUT);
+            rt = epoll_wait(m_epfd, events, 64, (int)next_timeout);
 
             // 处理系统调用被信号中断的情况(EINTR)
             // 如果是因为信号中断导致的返回，则重新调用epoll_wait
@@ -355,6 +373,13 @@ void IOManager::idle() {
                 break;
             }
         } 
+
+        std::vector<std::function<void()>> cbs;
+        listExpiredCb(cbs); // 获取所有过期的定时器回调函数
+        if(!cbs.empty()) {
+            schedule(cbs.begin(), cbs.end()); // 调度执行这些回调函数
+            cbs.clear(); // 清空回调函数列表
+        }
         
         // 处理所有返回的事件，rt是返回的事件数量
         for(int i = 0; i < rt; i++) {
@@ -431,5 +456,8 @@ void IOManager::idle() {
     }
 }
 
+void IOManager::onTimerInsertedAtFront() {
+    tickle();
+}
 
 }

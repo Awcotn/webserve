@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/root/workspace/webserve/awcotn/mutex.cc" "CMakeFiles/awcotn.dir/awcotn/mutex.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/mutex.cc.o.d"
   "/root/workspace/webserve/awcotn/scheduler.cc" "CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o.d"
   "/root/workspace/webserve/awcotn/thread.cc" "CMakeFiles/awcotn.dir/awcotn/thread.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/thread.cc.o.d"
+  "/root/workspace/webserve/awcotn/timer.cc" "CMakeFiles/awcotn.dir/awcotn/timer.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/timer.cc.o.d"
   "/root/workspace/webserve/awcotn/util.cc" "CMakeFiles/awcotn.dir/awcotn/util.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/util.cc.o.d"
   )
 

@@ -832,7 +832,9 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: \
  /usr/include/bits/indirect-return.h /usr/include/sys/ucontext.h \
  /usr/include/bits/types/stack_t.h \
  /root/workspace/webserve/awcotn/scheduler.h \
- /root/workspace/webserve/awcotn/iomanager.h /usr/include/sys/socket.h \
+ /root/workspace/webserve/awcotn/iomanager.h \
+ /root/workspace/webserve/awcotn/timer.h /usr/include/sys/epoll.h \
+ /usr/include/bits/epoll.h /usr/include/sys/socket.h \
  /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
  /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
  /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
@@ -841,5 +843,4 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: \
  /usr/include/netinet/in.h /usr/include/bits/in.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
  /usr/include/linux/falloc.h /usr/include/bits/stat.h \
- /usr/include/c++/8/iostream /usr/include/sys/epoll.h \
- /usr/include/bits/epoll.h
+ /usr/include/c++/8/iostream /root/workspace/webserve/awcotn/timer.h

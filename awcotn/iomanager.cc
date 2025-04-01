@@ -11,6 +11,11 @@ namespace awcotn {
 
 static awcotn::Logger::ptr g_logger = AWCOTN_LOG_NAME("system");
 
+/**
+ * @brief 获取指定事件类型对应的事件上下文
+ * @param event 事件类型(READ/WRITE)
+ * @return 对应事件类型的上下文引用
+ */
 IOManager::FdContext::EventContext& IOManager::FdContext::getContext(Event event) {
      switch(event) {
         case READ:
@@ -22,12 +27,21 @@ IOManager::FdContext::EventContext& IOManager::FdContext::getContext(Event event
     };
 }
 
+/**
+ * @brief 重置事件上下文的状态
+ * @param ctx 需要重置的事件上下文
+ */
 void IOManager::FdContext::resetContext(EventContext& ctx) {
     ctx.scheduler = nullptr;
     ctx.fiber.reset();
     ctx.cb = nullptr;
 }
 
+/**
+ * @brief 触发指定的事件
+ * @param event 要触发的事件类型(READ/WRITE)
+ * @details 将对应事件的回调函数或协程调度到调度器中执行，同时从events中清除该事件标志
+ */
 void IOManager::FdContext::triggerEvent(IOManager::Event event) {
     AWCOTN_ASSERT(events & event);
     events = (Event)(events & ~event);
@@ -41,33 +55,48 @@ void IOManager::FdContext::triggerEvent(IOManager::Event event) {
     return;
 }
 
+/**
+ * @brief IOManager构造函数，初始化epoll实例和通知管道
+ * @param threads 线程数量
+ * @param use_caller 是否使用调用者线程
+ * @param name 调度器名称
+ * @details 创建epoll实例，并设置通知机制用于唤醒idle线程
+ */
 IOManager::IOManager(size_t threads, bool use_caller, const std::string& name) 
     : Scheduler(threads, use_caller, name) {
+    // 创建epoll实例，参数5000只是一个提示，不是实际限制
     m_epfd = epoll_create(5000);
     AWCOTN_ASSERT(m_epfd > 0);   
 
+    // 创建管道用于通知/唤醒idle线程
     int rt = pipe(m_tickleFds);
     AWCOTN_ASSERT(!rt);
 
+    // 配置epoll监听管道的读端，设置为边缘触发模式(EPOLLET)
     epoll_event event;
     memset(&event, 0, sizeof(epoll_event));
     event.events = EPOLLIN | EPOLLET;
     event.data.fd = m_tickleFds[0];
 
+    // 设置管道读端为非阻塞模式
     rt = fcntl(m_tickleFds[0], F_SETFL, O_NONBLOCK);
     AWCOTN_ASSERT(rt == 0);
 
+    // 将管道读端添加到epoll实例
     rt = epoll_ctl(m_epfd, EPOLL_CTL_ADD, m_tickleFds[0], &event);
-
     AWCOTN_ASSERT(!rt);
 
+    // 初始化文件描述符上下文数组
     contextResize(32);
-    //m_fdContexts.resize(32);
-        
+    
+    // 启动调度器
     start();
-
 }
 
+/**
+ * @brief IOManager析构函数，释放资源
+ * @details 停止调度器，关闭epoll实例和管道，释放所有文件描述符上下文
+ */
 IOManager::~IOManager() {
     AWCOTN_LOG_INFO(g_logger) << "IOManager::~IOManager";
     stop();
@@ -82,6 +111,11 @@ IOManager::~IOManager() {
     }
 }
 
+/**
+ * @brief 重新调整文件描述符上下文数组大小
+ * @param size 新的大小
+ * @details 确保数组能容纳指定数量的文件描述符，并初始化新增的上下文
+ */
 void IOManager::contextResize(size_t size) {
     m_fdContexts.resize(size);
     for(size_t i = 0; i < m_fdContexts.size(); ++i) {
@@ -92,7 +126,6 @@ void IOManager::contextResize(size_t size) {
     }
 }
 
-//1 success, 0 retry. -1 error
 /**
  * @brief 向IO事件监听器添加事件
  * @param fd 文件描述符
@@ -102,12 +135,6 @@ void IOManager::contextResize(size_t size) {
  * @details 该函数将一个文件描述符的指定事件注册到epoll中，并设置对应的回调
  */
 int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
-
-
-
-    // AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
-    //     << " event=" << event;
-
     // 获取文件描述符对应的上下文对象
     FdContext* fd_ctx = nullptr;
     // 读锁保护，尝试从已有列表获取fd上下文
@@ -124,9 +151,6 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         fd_ctx = m_fdContexts[fd];
     }
 
-    // AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
-    //     << " event=" << event;
-
     // 锁定特定fd的上下文，保证fd操作的线程安全
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
     // 确保不重复添加同一事件
@@ -136,9 +160,6 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
             << " fd_ctx.event=" << fd_ctx->events;
         AWCOTN_ASSERT(!(fd_ctx->events & event));
     }
-
-    // AWCOTN_LOG_INFO(g_logger) << "addEvent fd=" << fd
-    //     << " event=" << event;
 
     // 根据文件描述符当前状态确定epoll操作类型
     int op = fd_ctx->events ? EPOLL_CTL_MOD : EPOLL_CTL_ADD;
@@ -170,7 +191,6 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
         return -1;
     }
     
-
     // 增加待处理事件计数
     m_pendingEventCount++;
     // 更新文件描述符上下文中的事件标志位
@@ -197,6 +217,13 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
     return 0;
 }
 
+/**
+ * @brief 删除文件描述符上的事件
+ * @param fd 文件描述符
+ * @param event 要删除的事件(READ/WRITE)
+ * @return 成功返回true，失败返回false
+ * @details 从epoll实例中删除指定的事件监听，但不触发任何回调
+ */
 bool IOManager::delEvent(int fd, Event event) {
     RWMutexType::ReadLock lock(m_mutex);
     if(fd >= (int)m_fdContexts.size()) {
@@ -210,7 +237,9 @@ bool IOManager::delEvent(int fd, Event event) {
         return false;
     }
 
+    // 计算删除事件后的事件集合
     Event new_events = (Event)(fd_ctx->events & ~event);
+    // 根据剩余事件决定epoll操作：有则修改，无则删除
     int op = new_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = EPOLLET | new_events;
@@ -224,13 +253,22 @@ bool IOManager::delEvent(int fd, Event event) {
         return false;
     }
 
+    // 更新待处理事件计数和文件描述符事件标志
     m_pendingEventCount--;
     fd_ctx->events = new_events;
+    // 重置对应事件的上下文，但不调度执行任何回调
     FdContext::EventContext& event_ctx = fd_ctx->getContext(event);
     fd_ctx->resetContext(event_ctx);
     return true;
 }
 
+/**
+ * @brief 取消文件描述符上的事件并触发回调
+ * @param fd 文件描述符
+ * @param event 要取消的事件(READ/WRITE)
+ * @return 成功返回true，失败返回false
+ * @details 从epoll实例中删除指定的事件监听，并调度执行对应的回调函数或协程
+ */
 bool IOManager::cancelEvent(int fd, Event event) {
     RWMutexType::ReadLock lock(m_mutex);
     if(fd >= (int)m_fdContexts.size()) {
@@ -244,7 +282,9 @@ bool IOManager::cancelEvent(int fd, Event event) {
         return false;
     }
 
+    // 计算取消事件后的事件集合
     Event new_events = (Event)(fd_ctx->events & ~event);
+    // 根据剩余事件决定epoll操作：有则修改，无则删除
     int op = new_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = EPOLLET | new_events;
@@ -258,12 +298,20 @@ bool IOManager::cancelEvent(int fd, Event event) {
         return false;
     }
 
+    // 更新待处理事件计数
     m_pendingEventCount--;
+    // 触发事件对应的回调函数或协程
     fd_ctx->triggerEvent(event);
    
     return true;
 }
 
+/**
+ * @brief 取消文件描述符上的所有事件并触发回调
+ * @param fd 文件描述符
+ * @return 成功返回true，失败返回false
+ * @details 从epoll实例中删除所有事件监听，并调度执行对应的回调函数或协程
+ */
 bool IOManager::cancelAll(int fd) {
     RWMutexType::ReadLock lock(m_mutex);
     if(fd >= (int)m_fdContexts.size()) {
@@ -277,6 +325,7 @@ bool IOManager::cancelAll(int fd) {
         return false;
     }
 
+    // 从epoll实例中完全删除该文件描述符
     int op = EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = 0;
@@ -290,6 +339,7 @@ bool IOManager::cancelAll(int fd) {
         return false;
     }
 
+    // 触发所有注册的事件回调
     if(fd_ctx->events & READ) {
         fd_ctx->triggerEvent(READ);
         m_pendingEventCount --;
@@ -303,10 +353,18 @@ bool IOManager::cancelAll(int fd) {
     return true;
 }
 
+/**
+ * @brief 获取当前线程的IOManager实例
+ * @return 当前线程的IOManager指针，如果当前调度器不是IOManager则返回nullptr
+ */
 IOManager* IOManager::GetThis() {
     return dynamic_cast<IOManager*>(Scheduler::GetThis());
 }
 
+/**
+ * @brief 唤醒一个空闲的线程处理待处理事件
+ * @details 通过向tickle管道写入数据唤醒epoll_wait阻塞的线程
+ */
 void IOManager::tickle() {
     if(hasIdleThreads()) {
         return;
@@ -315,11 +373,21 @@ void IOManager::tickle() {
     AWCOTN_ASSERT(rt == 1);
 }
 
+/**
+ * @brief 检查调度器是否应该停止
+ * @return 如果调度器应该停止返回true，否则返回false
+ */
 bool IOManager::stopping() {
     uint64_t timeout = getNextTimer();
     return stopping(timeout);
 }
 
+/**
+ * @brief 检查调度器是否应该停止
+ * @param timeout 下一个定时器的超时时间
+ * @return 如果调度器应该停止返回true，否则返回false
+ * @details 当没有定时器、没有待处理事件且调度器状态为停止时返回true
+ */
 bool IOManager::stopping(uint64_t timeout) {
     timeout = getNextTimer();
     return timeout == ~0ull
@@ -327,6 +395,10 @@ bool IOManager::stopping(uint64_t timeout) {
         && Scheduler::stopping();
 } 
 
+/**
+ * @brief 线程空闲时执行的函数，主要用于等待和处理IO事件
+ * @details 通过epoll_wait等待IO事件，处理定时器回调，并对触发的事件执行对应的回调
+ */
 void IOManager::idle() {
     // 分配一个长度为64的epoll_event数组，用于存储从epoll_wait返回的事件
     // 使用()初始化确保所有元素被零初始化
@@ -345,8 +417,6 @@ void IOManager::idle() {
             break;
         }
 
-        
-        
         int rt = 0; // 存储epoll_wait返回的事件数量
         while(true) {
             static const int MAX_TIMEOUT = 1000; // 最大超时时间为1秒(1000毫秒)
@@ -448,14 +518,20 @@ void IOManager::idle() {
             }
         }
 
+        // 当前协程处理完所有事件后，需要让出执行权
         Fiber::ptr cur = Fiber::GetThis();
         auto raw_ptr = cur.get();
         cur.reset();
 
+        // 将当前协程切换出去，让调度器调度其他协程执行
         raw_ptr->swapOut();
     }
 }
 
+/**
+ * @brief 当定时器被插入到最前面时调用
+ * @details 唤醒idle线程以重新计算等待超时时间
+ */
 void IOManager::onTimerInsertedAtFront() {
     tickle();
 }

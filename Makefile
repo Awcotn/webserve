@@ -260,6 +260,30 @@ awcotn/config.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/config.cc.s
 .PHONY : awcotn/config.cc.s
 
+awcotn/fd_manager.o: awcotn/fd_manager.cc.o
+.PHONY : awcotn/fd_manager.o
+
+# target to build an object file
+awcotn/fd_manager.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.o
+.PHONY : awcotn/fd_manager.cc.o
+
+awcotn/fd_manager.i: awcotn/fd_manager.cc.i
+.PHONY : awcotn/fd_manager.i
+
+# target to preprocess a source file
+awcotn/fd_manager.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.i
+.PHONY : awcotn/fd_manager.cc.i
+
+awcotn/fd_manager.s: awcotn/fd_manager.cc.s
+.PHONY : awcotn/fd_manager.s
+
+# target to generate assembly for a file
+awcotn/fd_manager.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/awcotn.dir/build.make CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.s
+.PHONY : awcotn/fd_manager.cc.s
+
 awcotn/fiber.o: awcotn/fiber.cc.o
 .PHONY : awcotn/fiber.o
 
@@ -688,6 +712,9 @@ help:
 	@echo "... awcotn/config.o"
 	@echo "... awcotn/config.i"
 	@echo "... awcotn/config.s"
+	@echo "... awcotn/fd_manager.o"
+	@echo "... awcotn/fd_manager.i"
+	@echo "... awcotn/fd_manager.s"
 	@echo "... awcotn/fiber.o"
 	@echo "... awcotn/fiber.i"
 	@echo "... awcotn/fiber.s"

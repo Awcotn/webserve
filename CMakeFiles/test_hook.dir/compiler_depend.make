@@ -186,6 +186,11 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: tests/test_hook.cc \
   /usr/include/asm-generic/sockios.h \
   /usr/include/bits/types/struct_osockaddr.h \
   /usr/include/sys/time.h \
+  /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h \
+  /usr/include/bits/fcntl-linux.h \
+  /usr/include/linux/falloc.h \
+  /usr/include/bits/stat.h \
   awcotn/iomanager.h \
   awcotn/scheduler.h \
   awcotn/macro.h \
@@ -352,6 +357,10 @@ awcotn/scheduler.h:
 
 awcotn/iomanager.h:
 
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/fcntl.h:
+
 /usr/include/bits/types/struct_osockaddr.h:
 
 /usr/include/asm-generic/socket.h:
@@ -452,6 +461,8 @@ awcotn/iomanager.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h:
 
+/usr/include/fcntl.h:
+
 /usr/include/c++/8/x86_64-redhat-linux/bits/gthr-default.h:
 
 /usr/include/c++/8/bits/cxxabi_init_exception.h:
@@ -469,6 +480,8 @@ awcotn/iomanager.h:
 /usr/include/bits/stdio_lim.h:
 
 /usr/include/bits/types/clock_t.h:
+
+/usr/include/linux/falloc.h:
 
 /usr/include/stdc-predef.h:
 
@@ -499,6 +512,8 @@ awcotn/hook.h:
 /usr/include/sys/types.h:
 
 /usr/include/bits/types/__fpos64_t.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/bits/long-double.h:
 

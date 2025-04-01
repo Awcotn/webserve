@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/awcotn.dir/awcotn/config.cc.o"
   "CMakeFiles/awcotn.dir/awcotn/config.cc.o.d"
+  "CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.o"
+  "CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.o.d"
   "CMakeFiles/awcotn.dir/awcotn/fiber.cc.o"
   "CMakeFiles/awcotn.dir/awcotn/fiber.cc.o.d"
   "CMakeFiles/awcotn.dir/awcotn/hook.cc.o"

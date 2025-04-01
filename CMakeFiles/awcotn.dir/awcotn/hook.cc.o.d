@@ -119,7 +119,9 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o: \
  /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
  /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
- /usr/include/dlfcn.h /usr/include/bits/dlfcn.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/linux/falloc.h \
+ /usr/include/bits/stat.h /usr/include/dlfcn.h /usr/include/bits/dlfcn.h \
  /root/workspace/webserve/awcotn/iomanager.h \
  /root/workspace/webserve/awcotn/scheduler.h \
  /root/workspace/webserve/awcotn/macro.h /usr/include/string.h \

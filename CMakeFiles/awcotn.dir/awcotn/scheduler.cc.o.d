@@ -160,4 +160,7 @@ CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o: \
  /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
  /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
  /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
- /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/linux/falloc.h \
+ /usr/include/bits/stat.h

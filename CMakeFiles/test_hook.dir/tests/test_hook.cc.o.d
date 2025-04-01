@@ -119,7 +119,9 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: \
  /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
  /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
- /root/workspace/webserve/awcotn/iomanager.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/linux/falloc.h \
+ /usr/include/bits/stat.h /root/workspace/webserve/awcotn/iomanager.h \
  /root/workspace/webserve/awcotn/scheduler.h \
  /root/workspace/webserve/awcotn/macro.h /usr/include/string.h \
  /usr/include/strings.h /usr/include/assert.h \

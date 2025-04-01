@@ -15,6 +15,7 @@ find_library(YAMLCPP yaml-cpp)
 
 set(LIB_SRC
     awcotn/config.cc
+    awcotn/fd_manager.cc
     awcotn/fiber.cc
     awcotn/hook.cc
     awcotn/iomanager.cc

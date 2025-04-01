@@ -167,4 +167,5 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o: \
  /usr/include/bits/types/stack_t.h /usr/include/c++/8/atomic \
  /root/workspace/webserve/awcotn/timer.h /usr/include/sys/epoll.h \
  /usr/include/bits/epoll.h /usr/include/c++/8/set \
- /usr/include/c++/8/bits/stl_set.h /usr/include/c++/8/bits/stl_multiset.h
+ /usr/include/c++/8/bits/stl_set.h /usr/include/c++/8/bits/stl_multiset.h \
+ /root/workspace/webserve/awcotn/fd_manager.h

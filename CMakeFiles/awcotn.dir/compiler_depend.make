@@ -2512,7 +2512,8 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o: awcotn/hook.cc \
   /usr/include/bits/epoll.h \
   /usr/include/c++/8/set \
   /usr/include/c++/8/bits/stl_set.h \
-  /usr/include/c++/8/bits/stl_multiset.h
+  /usr/include/c++/8/bits/stl_multiset.h \
+  awcotn/fd_manager.h
 
 CMakeFiles/awcotn.dir/awcotn/iomanager.cc.o: awcotn/iomanager.cc \
   /usr/include/stdc-predef.h \

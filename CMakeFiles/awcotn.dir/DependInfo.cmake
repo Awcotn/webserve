@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/root/workspace/webserve/awcotn/config.cc" "CMakeFiles/awcotn.dir/awcotn/config.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/config.cc.o.d"
   "/root/workspace/webserve/awcotn/fiber.cc" "CMakeFiles/awcotn.dir/awcotn/fiber.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/fiber.cc.o.d"
+  "/root/workspace/webserve/awcotn/hook.cc" "CMakeFiles/awcotn.dir/awcotn/hook.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/hook.cc.o.d"
   "/root/workspace/webserve/awcotn/iomanager.cc" "CMakeFiles/awcotn.dir/awcotn/iomanager.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/iomanager.cc.o.d"
   "/root/workspace/webserve/awcotn/log.cc" "CMakeFiles/awcotn.dir/awcotn/log.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/log.cc.o.d"
   "/root/workspace/webserve/awcotn/mutex.cc" "CMakeFiles/awcotn.dir/awcotn/mutex.cc.o" "gcc" "CMakeFiles/awcotn.dir/awcotn/mutex.cc.o.d"

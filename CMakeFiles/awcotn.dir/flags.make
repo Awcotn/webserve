@@ -12,6 +12,8 @@ CXX_FLAGS =  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function 
 
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/fiber.cc.o_DEFINES = __FILE__="awcotn/fiber.cc"
 
+# Custom defines: CMakeFiles/awcotn.dir/awcotn/hook.cc.o_DEFINES = __FILE__="awcotn/hook.cc"
+
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/iomanager.cc.o_DEFINES = __FILE__="awcotn/iomanager.cc"
 
 # Custom defines: CMakeFiles/awcotn.dir/awcotn/log.cc.o_DEFINES = __FILE__="awcotn/log.cc"

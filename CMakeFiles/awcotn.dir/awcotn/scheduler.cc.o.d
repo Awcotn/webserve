@@ -154,4 +154,10 @@ CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o: \
  /usr/include/bits/semaphore.h /root/workspace/webserve/awcotn/mutex.h \
  /root/workspace/webserve/awcotn/fiber.h /usr/include/ucontext.h \
  /usr/include/bits/indirect-return.h /usr/include/sys/ucontext.h \
- /usr/include/bits/types/stack_t.h /usr/include/c++/8/atomic
+ /usr/include/bits/types/stack_t.h /usr/include/c++/8/atomic \
+ /root/workspace/webserve/awcotn/hook.h /usr/include/sys/socket.h \
+ /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
+ /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h

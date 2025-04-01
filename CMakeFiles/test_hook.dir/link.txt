@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic -ggdb -O0 -Wall  -Werror -Wno-unused-function -Wno-builtin-macro-redefined -rdynamic CMakeFiles/test_hook.dir/tests/test_hook.cc.o -o bin/test_hook   -L/apps/root/lib  -Wl,-rpath,/apps/root/lib:/root/workspace/webserve/lib lib/libawcotn.so -ldl -lpthread -lyaml-cpp 

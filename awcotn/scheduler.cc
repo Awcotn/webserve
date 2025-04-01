@@ -2,6 +2,7 @@
 #include "log.h"
 #include "macro.h"
 #include "thread.h"
+#include "hook.h"
 namespace awcotn {
 
 static awcotn::Logger::ptr g_logger = AWCOTN_LOG_NAME("system");
@@ -140,6 +141,7 @@ void Scheduler::setThis() {
 }
 
 void Scheduler::run() {
+    set_hook_enable(true);
     setThis();
     AWCOTN_LOG_INFO(g_logger) << "run";
     if(awcotn::GetThreadId() != m_rootThread) {

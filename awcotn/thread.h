@@ -13,7 +13,6 @@
 #include <semaphore.h>
 #include <stdint.h>
 #include "mutex.h"
-#include "noncopyable.h"
 
 namespace awcotn {
 class Thread {

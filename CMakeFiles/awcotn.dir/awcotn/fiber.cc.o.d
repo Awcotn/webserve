@@ -118,6 +118,7 @@ CMakeFiles/awcotn.dir/awcotn/fiber.cc.o: \
  /usr/include/c++/8/limits /usr/include/c++/8/ctime \
  /usr/include/c++/8/bits/parse_numbers.h /usr/include/semaphore.h \
  /usr/include/bits/semaphore.h /root/workspace/webserve/awcotn/mutex.h \
+ /root/workspace/webserve/awcotn/noncopyable.h \
  /root/workspace/webserve/awcotn/macro.h /usr/include/string.h \
  /usr/include/strings.h /usr/include/assert.h \
  /root/workspace/webserve/awcotn/util.h /usr/include/c++/8/vector \

@@ -927,6 +927,7 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /usr/local/include/yaml-cpp/yaml.h
  /usr/local/include/yaml-cpp/parser.h
  /usr/local/include/yaml-cpp/dll.h

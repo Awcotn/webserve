@@ -153,4 +153,5 @@ CMakeFiles/test.dir/tests/test.cc.o: \
  /usr/include/c++/8/functional /usr/include/c++/8/bits/std_function.h \
  /usr/include/semaphore.h /usr/include/bits/semaphore.h \
  /root/workspace/webserve/awcotn/mutex.h \
+ /root/workspace/webserve/awcotn/noncopyable.h \
  /root/workspace/webserve/awcotn/util.h

@@ -926,6 +926,7 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: tests/test_scheduler.cc
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   /usr/local/include/yaml-cpp/yaml.h \
   /usr/local/include/yaml-cpp/parser.h \
   /usr/local/include/yaml-cpp/dll.h \
@@ -1078,6 +1079,8 @@ awcotn/util.h:
 /usr/include/boost/detail/basic_pointerbuf.hpp:
 
 /usr/include/boost/math/special_functions/fpclassify.hpp:
+
+awcotn/noncopyable.h:
 
 /usr/include/boost/predef/detail/endian_compat.h:
 

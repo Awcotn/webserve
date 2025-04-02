@@ -784,6 +784,7 @@ CMakeFiles/test_util.dir/tests/test_util.cc.o: \
  /usr/include/c++/8/ratio /usr/include/c++/8/bits/parse_numbers.h \
  /usr/include/semaphore.h /usr/include/bits/semaphore.h \
  /root/workspace/webserve/awcotn/mutex.h \
+ /root/workspace/webserve/awcotn/noncopyable.h \
  /usr/local/include/yaml-cpp/yaml.h /usr/local/include/yaml-cpp/parser.h \
  /usr/local/include/yaml-cpp/dll.h /usr/local/include/yaml-cpp/emitter.h \
  /usr/local/include/yaml-cpp/binary.h \

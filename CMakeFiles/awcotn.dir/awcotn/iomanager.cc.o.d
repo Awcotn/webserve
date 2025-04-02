@@ -153,6 +153,7 @@ CMakeFiles/awcotn.dir/awcotn/iomanager.cc.o: \
  /usr/include/c++/8/bits/parse_numbers.h /usr/include/c++/8/functional \
  /usr/include/c++/8/bits/std_function.h /usr/include/semaphore.h \
  /usr/include/bits/semaphore.h /root/workspace/webserve/awcotn/mutex.h \
+ /root/workspace/webserve/awcotn/noncopyable.h \
  /root/workspace/webserve/awcotn/fiber.h /usr/include/ucontext.h \
  /usr/include/bits/indirect-return.h /usr/include/sys/ucontext.h \
  /usr/include/bits/types/stack_t.h /usr/include/c++/8/atomic \

@@ -926,6 +926,7 @@ CMakeFiles/awcotn.dir/awcotn/config.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /usr/local/include/yaml-cpp/yaml.h
  /usr/local/include/yaml-cpp/parser.h
  /usr/local/include/yaml-cpp/dll.h
@@ -1158,6 +1159,7 @@ CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /root/workspace/webserve/awcotn/iomanager.h
  /root/workspace/webserve/awcotn/scheduler.h
  /root/workspace/webserve/awcotn/macro.h
@@ -1447,6 +1449,7 @@ CMakeFiles/awcotn.dir/awcotn/fiber.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /root/workspace/webserve/awcotn/macro.h
  /usr/include/string.h
  /usr/include/strings.h
@@ -2515,6 +2518,7 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /root/workspace/webserve/awcotn/fiber.h
  /usr/include/ucontext.h
  /usr/include/bits/indirect-return.h
@@ -3505,6 +3509,7 @@ CMakeFiles/awcotn.dir/awcotn/iomanager.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /root/workspace/webserve/awcotn/fiber.h
  /usr/include/ucontext.h
  /usr/include/bits/indirect-return.h
@@ -3755,6 +3760,7 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /usr/include/c++/8/iostream
  /usr/include/c++/8/cstdarg
  /root/workspace/webserve/awcotn/config.h
@@ -4681,6 +4687,7 @@ CMakeFiles/awcotn.dir/awcotn/mutex.cc.o
  /usr/include/c++/8/bits/std_function.h
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /root/workspace/webserve/awcotn/log.h
  /usr/include/c++/8/list
  /usr/include/c++/8/bits/stl_list.h
@@ -4972,6 +4979,7 @@ CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /root/workspace/webserve/awcotn/fiber.h
  /usr/include/ucontext.h
  /usr/include/bits/indirect-return.h
@@ -5174,6 +5182,7 @@ CMakeFiles/awcotn.dir/awcotn/thread.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /root/workspace/webserve/awcotn/log.h
  /usr/include/c++/8/list
  /usr/include/c++/8/bits/stl_list.h
@@ -5407,6 +5416,7 @@ CMakeFiles/awcotn.dir/awcotn/timer.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /usr/include/sys/epoll.h
  /usr/include/bits/epoll.h
  /usr/include/c++/8/list
@@ -5697,6 +5707,7 @@ CMakeFiles/awcotn.dir/awcotn/util.cc.o
  /usr/include/semaphore.h
  /usr/include/bits/semaphore.h
  /root/workspace/webserve/awcotn/mutex.h
+ /root/workspace/webserve/awcotn/noncopyable.h
  /usr/include/execinfo.h
  /root/workspace/webserve/awcotn/fiber.h
  /usr/include/ucontext.h

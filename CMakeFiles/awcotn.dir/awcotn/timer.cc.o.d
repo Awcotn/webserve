@@ -116,15 +116,15 @@ CMakeFiles/awcotn.dir/awcotn/timer.cc.o: \
  /usr/include/c++/8/bits/parse_numbers.h /usr/include/c++/8/functional \
  /usr/include/c++/8/bits/std_function.h /usr/include/semaphore.h \
  /usr/include/bits/semaphore.h /root/workspace/webserve/awcotn/mutex.h \
- /usr/include/sys/epoll.h /usr/include/bits/epoll.h \
- /usr/include/c++/8/list /usr/include/c++/8/bits/stl_list.h \
- /usr/include/c++/8/bits/list.tcc /usr/include/c++/8/set \
- /usr/include/c++/8/bits/stl_tree.h /usr/include/c++/8/bits/stl_set.h \
- /usr/include/c++/8/bits/stl_multiset.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/c++/8/vector \
- /usr/include/c++/8/bits/stl_vector.h \
+ /root/workspace/webserve/awcotn/noncopyable.h /usr/include/sys/epoll.h \
+ /usr/include/bits/epoll.h /usr/include/c++/8/list \
+ /usr/include/c++/8/bits/stl_list.h /usr/include/c++/8/bits/list.tcc \
+ /usr/include/c++/8/set /usr/include/c++/8/bits/stl_tree.h \
+ /usr/include/c++/8/bits/stl_set.h /usr/include/c++/8/bits/stl_multiset.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/c++/8/vector /usr/include/c++/8/bits/stl_vector.h \
  /usr/include/c++/8/bits/stl_bvector.h /usr/include/c++/8/bits/vector.tcc \
  /root/workspace/webserve/awcotn/util.h /usr/include/sys/syscall.h \
  /usr/include/asm/unistd.h /usr/include/asm/unistd_64.h \

@@ -9,9 +9,10 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <stdint.h>
+#include "noncopyable.h"
 
 namespace awcotn {
-class Semaphore {
+class Semaphore : Noncopyable {
 public:
     Semaphore(uint32_t count = 0);
     ~Semaphore();
@@ -120,7 +121,7 @@ private:
     bool m_locked;
 };
 
-class Mutex {
+class Mutex : Noncopyable {
 public:
     typedef ScopedLockImpl<Mutex> Lock;
     Mutex() {
@@ -143,7 +144,7 @@ private:
     pthread_mutex_t m_mutex;
 };
 
-class RWMutex {
+class RWMutex : Noncopyable {
 public:
     typedef ReadScopedLockImpl<RWMutex> ReadLock;
     typedef WriteScopedLockImpl<RWMutex> WriteLock;
@@ -172,7 +173,7 @@ private:
 
 };
 
-class Spinlock {
+class Spinlock : Noncopyable {
 public:
     typedef ScopedLockImpl<Spinlock> Lock;
     Spinlock() {

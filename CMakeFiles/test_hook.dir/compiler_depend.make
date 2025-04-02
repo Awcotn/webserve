@@ -254,6 +254,7 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: tests/test_hook.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/fiber.h \
   /usr/include/ucontext.h \
   /usr/include/bits/indirect-return.h \
@@ -281,6 +282,8 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: tests/test_hook.cc \
 awcotn/timer.h:
 
 /usr/include/bits/indirect-return.h:
+
+awcotn/noncopyable.h:
 
 awcotn/mutex.h:
 

@@ -116,6 +116,7 @@ CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.o: \
  /usr/include/c++/8/bits/parse_numbers.h /usr/include/c++/8/functional \
  /usr/include/c++/8/bits/std_function.h /usr/include/semaphore.h \
  /usr/include/bits/semaphore.h /root/workspace/webserve/awcotn/mutex.h \
+ /root/workspace/webserve/awcotn/noncopyable.h \
  /root/workspace/webserve/awcotn/iomanager.h \
  /root/workspace/webserve/awcotn/scheduler.h \
  /root/workspace/webserve/awcotn/macro.h /usr/include/string.h \

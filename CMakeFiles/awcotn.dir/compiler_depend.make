@@ -925,6 +925,7 @@ CMakeFiles/awcotn.dir/awcotn/config.cc.o: awcotn/config.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   /usr/local/include/yaml-cpp/yaml.h \
   /usr/local/include/yaml-cpp/parser.h \
   /usr/local/include/yaml-cpp/dll.h \
@@ -1156,6 +1157,7 @@ CMakeFiles/awcotn.dir/awcotn/fd_manager.cc.o: awcotn/fd_manager.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/iomanager.h \
   awcotn/scheduler.h \
   awcotn/macro.h \
@@ -1444,6 +1446,7 @@ CMakeFiles/awcotn.dir/awcotn/fiber.cc.o: awcotn/fiber.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/macro.h \
   /usr/include/string.h \
   /usr/include/strings.h \
@@ -2511,6 +2514,7 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o: awcotn/hook.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/fiber.h \
   /usr/include/ucontext.h \
   /usr/include/bits/indirect-return.h \
@@ -3500,6 +3504,7 @@ CMakeFiles/awcotn.dir/awcotn/iomanager.cc.o: awcotn/iomanager.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/fiber.h \
   /usr/include/ucontext.h \
   /usr/include/bits/indirect-return.h \
@@ -3749,6 +3754,7 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o: awcotn/log.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   /usr/include/c++/8/iostream \
   /usr/include/c++/8/cstdarg \
   awcotn/config.h \
@@ -4674,6 +4680,7 @@ CMakeFiles/awcotn.dir/awcotn/mutex.cc.o: awcotn/mutex.cc \
   /usr/include/c++/8/bits/std_function.h \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
+  awcotn/noncopyable.h \
   awcotn/log.h \
   /usr/include/c++/8/list \
   /usr/include/c++/8/bits/stl_list.h \
@@ -4964,6 +4971,7 @@ CMakeFiles/awcotn.dir/awcotn/scheduler.cc.o: awcotn/scheduler.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/fiber.h \
   /usr/include/ucontext.h \
   /usr/include/bits/indirect-return.h \
@@ -5165,6 +5173,7 @@ CMakeFiles/awcotn.dir/awcotn/thread.cc.o: awcotn/thread.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/log.h \
   /usr/include/c++/8/list \
   /usr/include/c++/8/bits/stl_list.h \
@@ -5397,6 +5406,7 @@ CMakeFiles/awcotn.dir/awcotn/timer.cc.o: awcotn/timer.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   /usr/include/sys/epoll.h \
   /usr/include/bits/epoll.h \
   /usr/include/c++/8/list \
@@ -5686,6 +5696,7 @@ CMakeFiles/awcotn.dir/awcotn/util.cc.o: awcotn/util.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   /usr/include/execinfo.h \
   awcotn/fiber.h \
   /usr/include/ucontext.h \
@@ -5856,6 +5867,8 @@ awcotn/util.h:
 /usr/include/boost/detail/basic_pointerbuf.hpp:
 
 /usr/include/boost/math/special_functions/fpclassify.hpp:
+
+awcotn/noncopyable.h:
 
 /usr/include/boost/predef/detail/endian_compat.h:
 

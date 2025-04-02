@@ -232,8 +232,11 @@ CMakeFiles/test.dir/tests/test.cc.o: tests/test.cc \
   /usr/include/semaphore.h \
   /usr/include/bits/semaphore.h \
   awcotn/mutex.h \
+  awcotn/noncopyable.h \
   awcotn/util.h
 
+
+awcotn/noncopyable.h:
 
 awcotn/mutex.h:
 

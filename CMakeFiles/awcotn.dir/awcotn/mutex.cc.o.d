@@ -117,11 +117,12 @@ CMakeFiles/awcotn.dir/awcotn/mutex.cc.o: \
  /usr/include/c++/8/bits/atomic_lockfree_defines.h \
  /usr/include/c++/8/backward/auto_ptr.h /usr/include/c++/8/functional \
  /usr/include/c++/8/bits/std_function.h /usr/include/semaphore.h \
- /usr/include/bits/semaphore.h /root/workspace/webserve/awcotn/log.h \
- /usr/include/c++/8/list /usr/include/c++/8/bits/stl_list.h \
- /usr/include/c++/8/bits/list.tcc /usr/include/c++/8/sstream \
- /usr/include/c++/8/istream /usr/include/c++/8/ios \
- /usr/include/c++/8/bits/ios_base.h \
+ /usr/include/bits/semaphore.h \
+ /root/workspace/webserve/awcotn/noncopyable.h \
+ /root/workspace/webserve/awcotn/log.h /usr/include/c++/8/list \
+ /usr/include/c++/8/bits/stl_list.h /usr/include/c++/8/bits/list.tcc \
+ /usr/include/c++/8/sstream /usr/include/c++/8/istream \
+ /usr/include/c++/8/ios /usr/include/c++/8/bits/ios_base.h \
  /usr/include/c++/8/bits/locale_classes.h \
  /usr/include/c++/8/bits/locale_classes.tcc \
  /usr/include/c++/8/system_error \

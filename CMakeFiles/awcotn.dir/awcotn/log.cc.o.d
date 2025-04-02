@@ -150,8 +150,10 @@ CMakeFiles/awcotn.dir/awcotn/log.cc.o: \
  /usr/include/c++/8/ctime /usr/include/c++/8/bits/parse_numbers.h \
  /usr/include/c++/8/functional /usr/include/c++/8/bits/std_function.h \
  /usr/include/semaphore.h /usr/include/bits/semaphore.h \
- /root/workspace/webserve/awcotn/mutex.h /usr/include/c++/8/iostream \
- /usr/include/c++/8/cstdarg /root/workspace/webserve/awcotn/config.h \
+ /root/workspace/webserve/awcotn/mutex.h \
+ /root/workspace/webserve/awcotn/noncopyable.h \
+ /usr/include/c++/8/iostream /usr/include/c++/8/cstdarg \
+ /root/workspace/webserve/awcotn/config.h \
  /usr/include/boost/lexical_cast.hpp /usr/include/boost/config.hpp \
  /usr/include/boost/config/user.hpp \
  /usr/include/boost/config/detail/select_compiler_config.hpp \

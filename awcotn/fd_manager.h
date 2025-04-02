@@ -11,7 +11,7 @@ namespace awcotn {
 class FdCtx : public std::enable_shared_from_this<FdCtx> {
 public:
     typedef std::shared_ptr<FdCtx> ptr;
-    typedef Mutex MutexType;
+
     FdCtx(int fd);
     ~FdCtx();
 
@@ -20,8 +20,8 @@ public:
     bool isSocket() const { return m_isSocket; }
     bool isClosed() const { return m_isClosed; }
 
-    void setUserNonblock(bool v) { m_sysNonblock = v; }
-    bool getUserNonblock() const { return m_sysNonblock; }
+    void setUserNonblock(bool v) { m_userNonblock = v; }
+    bool getUserNonblock() const { return m_userNonblock; }
 
     void setSysNonblock(bool v) { m_sysNonblock = v; }
     bool getSysNonblock() const { return m_sysNonblock; }

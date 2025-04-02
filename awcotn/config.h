@@ -271,7 +271,7 @@ class ConfigVar : public ConfigVarBase {
 public:
     typedef RWMutex RWMutexType;
     typedef std::shared_ptr<ConfigVar> ptr;
-    typedef std::function<ptr(const T& old_value, const T& new_value)> on_change_cb;
+    typedef std::function<void (const T& old_value, const T& new_value)> on_change_cb;
 
 
     ConfigVar(const std::string& name
@@ -318,11 +318,11 @@ public:
 
     std::string getTypeName() const override { return typeid(T).name(); }
 
-    uint64_t addListener(uint64_t key, on_change_cb cb) {
+    uint64_t addListener(on_change_cb cb) {
         static uint64_t s_fun_id = 0;
         RWMutexType::WriteLock lock(m_mutex);
         ++s_fun_id;
-        m_cbs[key] = cb;
+        m_cbs[s_fun_id] = cb;
         return s_fun_id;
     }
 

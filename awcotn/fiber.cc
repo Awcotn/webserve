@@ -84,6 +84,7 @@ Fiber::~Fiber() {
         StackAllocator::Dealloc(m_stack, m_stacksize);
     } else {
         AWCOTN_ASSERT(!m_cb);
+        AWCOTN_LOG_DEBUG(g_logger) << "Fiber::~Fiber id=" << m_id << m_state;
         AWCOTN_ASSERT(m_state == EXEC);
 
         Fiber* cur = t_fiber;

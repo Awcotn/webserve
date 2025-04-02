@@ -268,4 +268,7 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o
  /usr/include/c++/8/bits/stl_set.h
  /usr/include/c++/8/bits/stl_multiset.h
  /root/workspace/webserve/awcotn/log.h
+ /usr/include/arpa/inet.h
+ /usr/include/netinet/in.h
+ /usr/include/bits/in.h
 

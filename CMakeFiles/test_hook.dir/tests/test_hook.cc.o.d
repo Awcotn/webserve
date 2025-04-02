@@ -167,4 +167,5 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: \
  /root/workspace/webserve/awcotn/timer.h /usr/include/sys/epoll.h \
  /usr/include/bits/epoll.h /usr/include/c++/8/set \
  /usr/include/c++/8/bits/stl_set.h /usr/include/c++/8/bits/stl_multiset.h \
- /root/workspace/webserve/awcotn/log.h
+ /root/workspace/webserve/awcotn/log.h /usr/include/arpa/inet.h \
+ /usr/include/netinet/in.h /usr/include/bits/in.h

@@ -266,7 +266,10 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: tests/test_hook.cc \
   /usr/include/c++/8/set \
   /usr/include/c++/8/bits/stl_set.h \
   /usr/include/c++/8/bits/stl_multiset.h \
-  awcotn/log.h
+  awcotn/log.h \
+  /usr/include/arpa/inet.h \
+  /usr/include/netinet/in.h \
+  /usr/include/bits/in.h
 
 
 /usr/include/c++/8/set:
@@ -621,7 +624,11 @@ awcotn/fiber.h:
 
 /usr/include/bits/cpu-set.h:
 
+/usr/include/arpa/inet.h:
+
 /usr/include/c++/8/bits/allocator.h:
+
+/usr/include/bits/in.h:
 
 /usr/include/bits/types/timer_t.h:
 
@@ -764,6 +771,8 @@ awcotn/fiber.h:
 /usr/include/asm/errno.h:
 
 /usr/include/asm-generic/errno.h:
+
+/usr/include/netinet/in.h:
 
 /usr/include/c++/8/cstdint:
 

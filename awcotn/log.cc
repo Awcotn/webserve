@@ -776,7 +776,7 @@ auto g_log_defines =
     awcotn::Config::Lookup("logs", std::set<LogDefine>(), "logs config");
 struct LogIniter {
     LogIniter() {
-        g_log_defines->addListener(0xF1E231,[](const std::set<LogDefine>& old_value,
+        g_log_defines->addListener([](const std::set<LogDefine>& old_value,
                                                 const std::set<LogDefine>& new_value) -> std::shared_ptr<ConfigVar<std::set<LogDefine>>> {
             AWCOTN_LOG_INFO(AWCOTN_LOG_ROOT()) << "on_logger_conf_changed";
             for(auto& i : new_value) {

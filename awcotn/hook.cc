@@ -4,35 +4,39 @@
 #include <sys/ioctl.h>
 #include "iomanager.h"
 #include "fd_manager.h"
+#include "config.h"
 
 awcotn::Logger::ptr g_logger = AWCOTN_LOG_NAME("system");
 
 namespace awcotn {
 
-static thread_local bool t_hook_enable = true;
+static awcotn::ConfigVar<int>::ptr g_tcp_connect_timeout =
+    awcotn::Config::Lookup("tcp.connect.timeout", 5000, "tcp connect timeout");
+
+static thread_local bool t_hook_enable = false;
 
 #define HOOK_FUN(XX) \
-    XX(sleep) \
-    XX(usleep) \
-    XX(nanosleep) \
-    XX(socket) \
-    XX(connect) \
-    XX(accept) \
-    XX(read) \
-    XX(readv) \
-    XX(recv) \
-    XX(recvfrom) \
-    XX(recvmsg) \
-    XX(write) \
-    XX(writev) \
-    XX(send) \
-    XX(sendto) \
-    XX(sendmsg) \
-    XX(close) \
-    XX(fcntl) \
-    XX(ioctl) \
-    XX(getsockopt) \
-    XX(setsockopt) \
+        XX(sleep) \
+        XX(usleep) \
+        XX(nanosleep) \
+        XX(socket) \
+        XX(connect) \
+        XX(accept) \
+        XX(read) \
+        XX(readv) \
+        XX(recv) \
+        XX(recvfrom) \
+        XX(recvmsg) \
+        XX(write) \
+        XX(writev) \
+        XX(send) \
+        XX(sendto) \
+        XX(sendmsg) \
+        XX(close) \
+        XX(fcntl) \
+        XX(ioctl) \
+        XX(getsockopt) \
+        XX(setsockopt)
 
 void hook_init() {
     static bool is_inited = false;
@@ -44,9 +48,17 @@ void hook_init() {
 #undef XX
 }
 
+static uint64_t s_connect_timeout = -1;
 struct _HookIniter {
     _HookIniter() {
         hook_init();
+        s_connect_timeout = g_tcp_connect_timeout->getValue();
+
+        g_tcp_connect_timeout->addListener([](const int& old_value, const int& new_value){
+                AWCOTN_LOG_INFO(g_logger) << "tcp connect timeout changed from "
+                                         << old_value << " to " << new_value;
+                s_connect_timeout = new_value;
+        });
     }
 };
 
@@ -78,7 +90,7 @@ struct timer_info {
  * @return 成功返回操作的字节数，失败返回-1并设置errno
  */
 template<typename OrigFunc, typename... Args>
-static size_t do_io(int fd, OrigFunc fun, const char* func_name, 
+static ssize_t do_io(int fd, OrigFunc fun, const char* func_name, 
                     uint32_t event, int timeout_so, Args&&... args) {
     // 如果钩子未启用，直接调用原始函数
     if(!awcotn::t_hook_enable) {
@@ -192,8 +204,8 @@ int usleep(useconds_t usec) {
     awcotn::IOManager* iom = awcotn::IOManager::GetThis();
     
     iom->addTimer(usec / 1000, std::bind((void(awcotn::Scheduler::*)
-    (awcotn::Fiber::ptr, int thread))&awcotn::IOManager::schedule
-    ,iom, fiber, -1));
+                (awcotn::Fiber::ptr, int thread))&awcotn::IOManager::schedule
+                ,iom, fiber, -1));
     awcotn::Fiber::YieldToHold();
     return 0;
 }
@@ -206,8 +218,8 @@ int nanosleep(const struct timespec *req, struct timespec *rem) {
     awcotn::IOManager* iom = awcotn::IOManager::GetThis();
     
     iom->addTimer(req->tv_sec * 1000 + req->tv_nsec / 1000000, std::bind((void(awcotn::Scheduler::*)
-    (awcotn::Fiber::ptr, int thread))&awcotn::IOManager::schedule
-    ,iom, fiber, -1));
+                    (awcotn::Fiber::ptr, int thread))&awcotn::IOManager::schedule
+                    ,iom, fiber, -1));
     awcotn::Fiber::YieldToHold();
     return 0;
 }
@@ -225,12 +237,83 @@ int socket(int domain, int type, int protocol) {
     return fd;
 }
 
-int connect_with_timeout(int sockfd, const struct sockaddr* addr, socklen_t addrlen, uint64_t timeout_ms) {
-    
+int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen, uint64_t timeout_ms) {
+    if(!awcotn::t_hook_enable) {
+        return connect_f(fd, addr, addrlen);
+    }
+    awcotn::FdCtx::ptr ctx = awcotn::FdMgr::GetInstance()->get(fd);
+    if(!ctx || ctx->isClosed()) {
+        errno = EBADF;
+        return -1;
+    }
+
+    if(!ctx->isSocket()) {
+        return connect_f(fd, addr, addrlen);
+    }
+
+    if(ctx->getUserNonblock()) {
+        return connect_f(fd, addr, addrlen);
+    }
+
+    int n = connect_f(fd, addr, addrlen);
+    if(n == 0) {
+        return 0;
+    } else if(n != -1 || errno != EINPROGRESS) {
+        return n;
+    }
+
+    awcotn::IOManager* iom = awcotn::IOManager::GetThis();
+    awcotn::Timer::ptr timer = nullptr;
+
+    std::shared_ptr<timer_info> tinfo(new timer_info);
+
+    std::weak_ptr<timer_info> winfo(tinfo);
+    AWCOTN_LOG_INFO(g_logger) << timeout_ms;
+    if(timeout_ms != (uint64_t)-1) {
+        timer = iom->addConditionTimer(timeout_ms, [winfo, fd, iom]() {
+                auto t = winfo.lock();
+                if(!t || t->cancelled) {
+                    return;
+                }
+                t->cancelled = ETIMEDOUT;
+                iom->cancelEvent(fd, awcotn::IOManager::WRITE);
+        }, winfo);
+    }
+
+    AWCOTN_LOG_INFO(g_logger) << "connect addEvent(" << fd << ", WRITE)";
+
+    int rt = iom->addEvent(fd, awcotn::IOManager::WRITE);
+    if(rt == 0) {
+        awcotn::Fiber::YieldToHold();
+        if(timer) {
+            timer->cancel();
+        }
+        if(tinfo->cancelled) {
+            errno = tinfo->cancelled;
+            return -1;
+        }
+    } else {
+        if(timer) {
+            timer->cancel();
+        }
+        AWCOTN_LOG_ERROR(g_logger) << "connect addEvent(" << fd << ", WRITE) error";
+    }
+
+    int error = 0;
+    socklen_t len = sizeof(int);
+    if(-1 == getsockopt(fd, SOL_SOCKET, SO_ERROR, &error, &len)) {
+        return -1;
+    }
+    if(!error) {
+        return 0;
+    } else {
+        errno = error;
+        return -1;
+    }
 }
 
 int connect(int sockfd, const struct sockaddr* addr, socklen_t addrlen){
-    return connect_f(sockfd, addr, addrlen);
+    return connect_with_timeout(sockfd, addr, addrlen, awcotn::s_connect_timeout);
 }
 
  int accept(int sockfd, struct sockaddr* addr, socklen_t* addrlen){

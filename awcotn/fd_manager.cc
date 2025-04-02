@@ -51,7 +51,7 @@ bool FdCtx::init() {
 }
 
 void FdCtx::setTimeout(int type, uint64_t v) {
-    if(type == SO_RCVBUF) {
+    if(type == SO_RCVTIMEO) {
         m_recvTimeout = v;
     } else {
         m_sendTimeout = v;
@@ -59,7 +59,7 @@ void FdCtx::setTimeout(int type, uint64_t v) {
 }
 
 uint64_t FdCtx::getTimeout(int type) {
-    if(type == SO_RCVBUF) {
+    if(type == SO_RCVTIMEO) {
         return m_recvTimeout;
     } else {
         return m_sendTimeout;

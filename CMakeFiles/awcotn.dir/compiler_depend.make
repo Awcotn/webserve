@@ -2438,6 +2438,7 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o: awcotn/hook.cc \
   /usr/include/bits/stat.h \
   /usr/include/dlfcn.h \
   /usr/include/bits/dlfcn.h \
+  /usr/include/c++/8/cstdarg \
   awcotn/iomanager.h \
   awcotn/scheduler.h \
   awcotn/macro.h \
@@ -4950,9 +4951,9 @@ awcotn/timer.cc:
 
 awcotn/thread.cc:
 
-/usr/include/c++/8/cstdarg:
-
 awcotn/iomanager.cc:
+
+/usr/include/c++/8/cstdarg:
 
 /usr/include/bits/dlfcn.h:
 

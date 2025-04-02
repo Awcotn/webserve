@@ -2442,6 +2442,7 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o
  /usr/include/bits/stat.h
  /usr/include/dlfcn.h
  /usr/include/bits/dlfcn.h
+ /usr/include/c++/8/cstdarg
  /root/workspace/webserve/awcotn/iomanager.h
  /root/workspace/webserve/awcotn/scheduler.h
  /root/workspace/webserve/awcotn/macro.h

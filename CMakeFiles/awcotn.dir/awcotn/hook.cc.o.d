@@ -122,6 +122,11 @@ CMakeFiles/awcotn.dir/awcotn/hook.cc.o: \
  /usr/include/fcntl.h /usr/include/bits/fcntl.h \
  /usr/include/bits/fcntl-linux.h /usr/include/linux/falloc.h \
  /usr/include/bits/stat.h /usr/include/dlfcn.h /usr/include/bits/dlfcn.h \
+ /usr/include/c++/8/cstdarg /usr/include/sys/ioctl.h \
+ /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
+ /usr/include/asm/ioctl.h /usr/include/asm-generic/ioctl.h \
+ /usr/include/bits/ioctl-types.h /usr/include/sys/ttydefaults.h \
  /root/workspace/webserve/awcotn/iomanager.h \
  /root/workspace/webserve/awcotn/scheduler.h \
  /root/workspace/webserve/awcotn/macro.h /usr/include/string.h \

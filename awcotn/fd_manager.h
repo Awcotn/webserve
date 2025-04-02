@@ -61,7 +61,6 @@ public:
     typedef RWMutex RWMutexType;
 
     FdManager();
-    ~FdManager();
 
     /**
      * @brief 获取文件描述符对应的上下文

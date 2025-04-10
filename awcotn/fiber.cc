@@ -129,24 +129,48 @@ void Fiber::back() {
     }
 }
 
-//切换到当前协程
+/**
+ * @brief 将当前协程切换为运行状态并执行
+ * 
+ * 该方法作用:
+ * 1. 设置当前正在运行的协程为this
+ * 2. 确保协程不在EXEC状态(防止重复切换)
+ * 3. 将协程状态设为EXEC(执行中)
+ * 4. 保存调度器主协程上下文，并切换到当前协程上下文
+ * 5. 当协程让出CPU(YieldToReady/YieldToHold)或结束时，会从这里返回到调度器
+ * 
+ * 调用swapIn后，协程会从上次中断的地方继续执行，包括:
+ * - 首次执行时从MainFunc/CallerMainFunc开始
+ * - 非首次执行时从上次YieldToReady/YieldToHold的下一条指令继续
+ */
 void Fiber::swapIn() {
     SetThis(this);
     AWCOTN_ASSERT(m_state != EXEC);
     m_state = EXEC;
+    // 保存调度器主协程上下文到Scheduler::GetMainFiber()->m_ctx
+    // 并将当前上下文切换为this协程的m_ctx
     if(swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
         AWCOTN_ASSERT2(false, "swapcontext");
     }
 }
 
-//切换到后台执行
+/**
+ * @brief 将当前协程切换到后台，切回调度器主协程
+ * 
+ * 该方法作用:
+ * 1. 设置当前正在运行的协程为调度器主协程
+ * 2. 保存当前协程上下文，并切换回调器主协程上下文
+ * 3. 切换后当前协程会挂起，等待下次被swapIn唤醒
+ * 
+ * 注意: 协程状态(READY/HOLD)的设置需要在调用swapOut前完成
+ */
 void Fiber::swapOut() {
-    
     SetThis(Scheduler::GetMainFiber());
+    // 保存当前协程上下文到m_ctx
+    // 并恢复调度器主协程的上下文继续执行
     if(swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
         AWCOTN_ASSERT2(false, "swapcontext");
     }
-    
 }
 
 void Fiber::SetThis(Fiber* f) {
@@ -234,4 +258,4 @@ void Fiber::CallerMainFunc() {
     AWCOTN_ASSERT2(false, "never reach fiber id=" + std::to_string(raw_ptr->getId()));
 }
 
-} 
+}

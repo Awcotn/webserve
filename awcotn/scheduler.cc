@@ -140,6 +140,28 @@ void Scheduler::setThis() {
     t_scheduler = this;
 }
 
+/**
+ * @brief 调度器运行函数，负责协程调度循环
+ * @details 
+ * 核心工作流程：
+ * 1. 设置当前线程的调度器指针
+ * 2. 创建专用的空闲协程(idle_fiber)
+ * 3. 循环执行：
+ *    - 从任务队列获取待执行的协程/回调
+ *    - 如果有任务，则执行任务
+ *    - 如果没有任务，则执行空闲协程
+ * 
+ * 空闲协程与主协程分离的必要性：
+ * 1. 职责分离：主协程(m_rootFiber)负责调度循环，空闲协程专门处理空闲状态
+ * 2. 不同行为模式：
+ *    - 主协程需要保持运行以维持调度逻辑
+ *    - 空闲协程可以频繁让出执行权并监听事件(特别是在IOManager中)
+ * 3. 资源效率：
+ *    - 空闲协程可以在没有任务时通过epoll_wait等监听IO事件
+ *    - 主协程可以处理调度器的正常工作流
+ * 4. 状态管理：
+ *    - 让空闲协程单独处理idle状态，简化状态转换逻辑
+ */
 void Scheduler::run() {
     set_hook_enable(true);
     setThis();
@@ -148,6 +170,7 @@ void Scheduler::run() {
         t_scheduler_fiber = Fiber::GetThis().get();
     }
 
+    // 创建专门的空闲协程，用于处理线程无任务可调度的情况
     Fiber::ptr idle_fiber(new Fiber(std::bind(&Scheduler::idle, this)));
     Fiber::ptr cb_fiber;
 
@@ -182,10 +205,11 @@ void Scheduler::run() {
             tickle();
         }
 
+        // 执行调度的协程(如果有)
         if(ft.fiber && (ft.fiber->getState() != Fiber::TERM
                         && ft.fiber->getState() != Fiber::EXCEPT)) {
             
-            ft.fiber->swapIn();
+            ft.fiber->swapIn();  // 切换到任务协程
             --m_activeThreadCount;
 
             if(ft.fiber->getState() == Fiber::READY) {
@@ -196,6 +220,7 @@ void Scheduler::run() {
             }
             ft.reset();
         } else if(ft.cb) {
+            // 执行回调函数(如果有)
             if(cb_fiber) {
                 cb_fiber->reset(ft.cb);
             } else {
@@ -216,12 +241,14 @@ void Scheduler::run() {
                 cb_fiber.reset();
             }
         } else {
+            // 没有任务时，执行空闲协程
+            // 这里体现了空闲协程的重要性 - 在IOManager中会实现为epoll_wait等待IO事件
             if(idle_fiber->getState() == Fiber::TERM) {
                 AWCOTN_LOG_INFO(g_logger) << "idle fiber term";
                 break;
             }
             ++m_idleThreadCount;
-            idle_fiber->swapIn();
+            idle_fiber->swapIn();  // 切换到空闲协程
             if(idle_fiber->getState() != Fiber::TERM
                     && idle_fiber->getState() != Fiber::EXCEPT) {
                 idle_fiber->setState(Fiber::HOLD);
@@ -241,6 +268,17 @@ bool Scheduler::stopping() {
         && m_fibers.empty() && m_activeThreadCount == 0;
 }
 
+/**
+ * @brief 空闲协程执行函数
+ * @details 
+ * 在基类Scheduler中，空闲协程只是简单地让出执行权，等待被再次调度
+ * 在子类IOManager中，此函数被重写为调用epoll_wait等待IO事件
+ * 
+ * 空闲协程的价值：
+ * 1. 在IOManager中转化为事件循环，等待IO事件发生
+ * 2. 避免CPU空转，提高系统资源利用率
+ * 3. 可以在没有任务时释放CPU资源给其他进程使用
+ */
 void Scheduler::idle() {
     AWCOTN_LOG_INFO(g_logger) << "idle";
 
@@ -252,4 +290,4 @@ void Scheduler::idle() {
 
 
 
-} 
+}

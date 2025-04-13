@@ -60,7 +60,13 @@ void IOManager::FdContext::triggerEvent(IOManager::Event event) {
  * @param threads 线程数量
  * @param use_caller 是否使用调用者线程
  * @param name 调度器名称
- * @details 创建epoll实例，并设置通知机制用于唤醒idle线程
+ * @details 
+ * 创建epoll实例，并设置通知机制用于唤醒idle线程
+ * 
+ * 【多线程共享设计】
+ * 整个IOManager只创建一个epoll实例(m_epfd)，
+ * 所有工作线程的idle协程都监听这同一个epoll实例，
+ * 从而实现多线程协同处理IO事件的高效模型。
  */
 IOManager::IOManager(size_t threads, bool use_caller, const std::string& name) 
     : Scheduler(threads, use_caller, name) {
@@ -397,7 +403,20 @@ bool IOManager::stopping(uint64_t timeout) {
 
 /**
  * @brief 线程空闲时执行的函数，主要用于等待和处理IO事件
- * @details 通过epoll_wait等待IO事件，处理定时器回调，并对触发的事件执行对应的回调
+ * @details 
+ * 通过epoll_wait等待IO事件，处理定时器回调，并对触发的事件执行对应的回调
+ * 
+ * 【多线程共享epoll模型】
+ * 1. 所有调度线程的idle协程共享同一个epoll实例(m_epfd)
+ * 2. 多个线程可以同时调用epoll_wait监听事件
+ * 3. 当事件发生时，内核会唤醒其中一个等待的线程处理事件
+ * 4. 触发事件后，对应的回调会被放入调度器，可能由任意线程执行
+ * 5. 这种设计避免了传统的"每线程一个epoll"模型中的负载不均问题
+ * 
+ * 【惊群问题的处理】
+ * Linux内核在2.6.18后对epoll实现了优化，同一个epoll实例上的
+ * epoll_wait不会出现经典的"惊群现象"，即只有一个线程会被唤醒处理事件。
+ * 这使得多线程共享epoll实例的设计更加高效。
  */
 void IOManager::idle() {
     // 分配一个长度为64的epoll_event数组，用于存储从epoll_wait返回的事件

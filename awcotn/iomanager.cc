@@ -555,4 +555,60 @@ void IOManager::onTimerInsertedAtFront() {
     tickle();
 }
 
+/**
+ * @brief 协程间调用，处理调用者与被调用者的同步问题
+ * @param callee 被调用协程
+ * @return 返回被调用协程
+ * @details 
+ *   使用共享状态解决A调用B，B先返回而A还未挂起的问题
+ */
+Fiber::ptr IOManager::call(Fiber::ptr callee) {
+    AWCOTN_ASSERT(callee);
+    
+    // 获取当前调用者协程
+    Fiber::ptr caller = Fiber::GetThis();
+    AWCOTN_ASSERT(caller && caller->getState() == Fiber::EXEC);
+    
+    // 获取当前调度器
+    auto scheduler = GetThis();
+    AWCOTN_ASSERT(scheduler);
+    
+    // 检查被调用协程状态
+    if(callee->getState() == Fiber::TERM || 
+       callee->getState() == Fiber::EXCEPT) {
+        // 如果被调用协程已完成或异常，直接返回
+        return callee;
+    }
+    
+    // 创建共享状态，用于协程间同步
+    auto cb_info = std::make_shared<CallBackInfo>();
+    cb_info->caller = caller;
+    cb_info->callee = callee;
+    cb_info->scheduler = scheduler;
+    
+    // 包装被调用协程，在其执行完成后设置标志
+    scheduler->schedule([cb_info](){
+        // 执行被调用协程
+        cb_info->callee->swapIn();
+        
+        // 被调用协程执行完成，设置完成标志
+        cb_info->is_callee_done = true;
+        
+        // 如果调用者协程已经挂起，则重新调度调用者
+        if(cb_info->caller->getState() != Fiber::EXEC) {
+            cb_info->scheduler->schedule(&cb_info->caller);
+        }
+    });
+    
+    // 重要：在挂起前先检查被调用协程是否已经完成
+    // 这是解决"B协程先返回而A协程尚未挂起"问题的关键
+    if(!cb_info->is_callee_done) {
+        // 被调用协程未完成，挂起调用者协程
+        caller->swapOut();
+    }
+    // 如果被调用协程已在设置标志前完成，调用者无需挂起
+    
+    return callee;
+}
+
 }

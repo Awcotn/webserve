@@ -9,7 +9,31 @@
 
 namespace awcotn {
 
-class Scheduler;
+/**
+ * @brief 协程类
+ * @details 封装了协程的创建、切换、让出和恢复等操作
+ * 
+ * 协程间调用流程说明:
+ * 1. 父协程(A)调用子协程(B)的三种主要方式:
+ *    a) 使用Scheduler调度: A将B添加到调度器队列，然后让出执行权
+ *    b) 直接调用: A直接call() B，A被挂起直到B调用back()返回
+ *    c) 使用channel等通信机制: A发送请求到channel，B消费并处理
+ * 
+ * 2. 直接调用流程 (call/back模式):
+ *    - A调用B.call()，切换到B协程执行
+ *    - A被挂起，保存上下文到t_threadFiber
+ *    - B执行任务，完成后调用back()
+ *    - B被挂起，A恢复执行
+ *    - 适用于同步调用场景
+ * 
+ * 3. 调度器调用流程 (schedule模式):
+ *    - A将B添加到调度器: scheduler->schedule(B)
+ *    - A可以继续执行或让出CPU: Fiber::YieldToReady()
+ *    - 调度器选择B执行: B.swapIn()
+ *    - B完成后让出CPU: YieldToReady()/YieldToHold()
+ *    - 调度器可能调度A或其他协程继续执行
+ *    - 适用于异步调用场景
+ */
 class Fiber : public std::enable_shared_from_this<Fiber> {
 friend class Scheduler;
 public:
@@ -37,7 +61,19 @@ public:
     //切换到后台执行
     void swapOut();
 
+    /**
+     * @brief 将当前协程切换到运行状态
+     * @details 
+     * 协程调用方式1: 父协程调用子协程，父协程被挂起
+     * 通常用于线程的主协程调用其他协程
+     */
     void call();
+    
+    /**
+     * @brief 将当前协程切换到后台
+     * @details 
+     * 与call()配对使用，子协程调用back()返回到父协程
+     */
     void back();
 
     uint64_t getId() const { return m_id; }

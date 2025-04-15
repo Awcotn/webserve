@@ -16,8 +16,17 @@ public:
         WRITE = 0x4
     };
 
+    /**
+     * @brief 用于协程调用处理的回调信息结构
+     */
+    struct CallBackInfo {
+        Fiber::ptr caller;      // 调用者协程
+        Fiber::ptr callee;      // 被调用协程
+        bool is_callee_done;    // 被调用协程是否完成
+        Scheduler* scheduler;   // 关联的调度器
 
-
+        CallBackInfo() : is_callee_done(false), scheduler(nullptr) {}
+    };
 
 private:
     struct FdContext {
@@ -51,6 +60,17 @@ public:
     bool cancelAll(int fd);
 
     static IOManager* GetThis();
+    
+    /**
+     * @brief 协程间调用，处理调用者与被调用者的同步问题
+     * @param callee 被调用协程
+     * @return 返回被调用协程
+     * @details 
+     *   1. 如果callee已完成，直接返回
+     *   2. 如果callee未完成，挂起caller，等待callee完成
+     *   3. 防止caller尚未挂起，而callee已返回的情况
+     */
+    Fiber::ptr call(Fiber::ptr callee);
 
 protected:
     void tickle() override;
